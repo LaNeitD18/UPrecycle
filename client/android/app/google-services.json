@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "217533231279",
+    "project_id": "uprecycle-3530c",
+    "storage_bucket": "uprecycle-3530c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:217533231279:android:ccade5f9b5c6e60d0b245a",
+        "android_client_info": {
+          "package_name": "com.uprecycle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "217533231279-1d43cft174pd6ide8tg0detcaec8g6p0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbv6Hz_R_QOdO09G5NJc9uq_SBclIp598"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "217533231279-1d43cft174pd6ide8tg0detcaec8g6p0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

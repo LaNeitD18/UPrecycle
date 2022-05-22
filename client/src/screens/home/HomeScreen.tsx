@@ -6,7 +6,7 @@ import auth from '@react-native-firebase/auth';
 const HomeScreen = () => {
   return (
     <View>
-      <Text>Home screen Test husky</Text>
+      <Text>Home screen Test</Text>
       <TouchableOpacity
         onPress={() =>
           auth()

@@ -8,7 +8,9 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "start:reset": "react-native start --reset-cache"
+    "start:reset": "react-native start --reset-cache",
+    "lint-staged:eslint": "eslint --cache --fix --ext .js,.jsx,.ts,tsx",
+    "lint-staged:prettier": "prettier -c --write"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -21,8 +23,7 @@
     "@react-navigation/native-stack": "^6.6.2",
     "@rneui/base": "^4.0.0-rc.3",
     "@rneui/themed": "^4.0.0-rc.3",
-    "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-config-prettier": "^8.5.0",
+    "husky": "4",
     "npm": "^8.10.0",
     "react": "17.0.2",
     "react-native": "0.68.2",
@@ -44,12 +45,13 @@
     "babel-jest": "^26.6.3",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "husky": "^8.0.1",
     "jest": "^26.6.3",
     "lint-staged": "^12.4.1",
     "metro-react-native-babel-preset": "^0.67.0",
@@ -75,5 +77,21 @@
       "json",
       "node"
     ]
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,scss,md,json}": [
+      "npm run lint-staged:prettier"
+    ],
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run lint-staged:eslint"
+    ],
+    "**/*.scss": [
+      "npm run lint-staged:style"
+    ]
+  },
+  "setting": {
+    "import/resolver": {
+      "typescript": {}
+    }
   }
 }

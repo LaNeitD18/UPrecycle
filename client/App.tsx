@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import auth from '@react-native-firebase/auth';
 import AuthenticationNavigator from './src/navigation/AuthenticationNavigator';
 import MainNavigator from './src/navigation/MainNavigator';
-
-import auth from '@react-native-firebase/auth';
 
 const App = () => {
   // Set an initializing state whilst Firebase connects
@@ -10,6 +9,7 @@ const App = () => {
   const [user, setUser] = useState();
 
   // Handle user state changes
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   function onAuthStateChanged(user: any) {
     setUser(user);
     if (initializing) setInitializing(false);
@@ -22,10 +22,10 @@ const App = () => {
 
   if (initializing) return null;
 
-  if(user) {
-    return <MainNavigator></MainNavigator>;
+  if (user) {
+    return <MainNavigator />;
   }
-  return <AuthenticationNavigator></AuthenticationNavigator>;
+  return <AuthenticationNavigator />;
 };
 
 export default App;

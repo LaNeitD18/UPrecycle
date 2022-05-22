@@ -80,13 +80,13 @@
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,scss,md,json}": [
-      "npm run lint-staged:prettier"
+      "yarn lint-staged:prettier"
     ],
     "**/*.{js,jsx,ts,tsx}": [
-      "npm run lint-staged:eslint"
+      "yarn lint-staged:eslint"
     ],
     "**/*.scss": [
-      "npm run lint-staged:style"
+      "yarn lint-staged:style"
     ]
   },
   "setting": {

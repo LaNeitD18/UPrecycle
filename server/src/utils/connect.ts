@@ -1,14 +1,18 @@
-import mongoose from "mongoose";
-import config from "config";
+import { MongoClient, ServerApiVersion } from "mongodb";
 
 const connect = async () => {
-  const dbUri = config.get<string>('dbUri');
+  const dbUri: string = process.env.CONNECTION_URL || "";
+  const client = new MongoClient(dbUri, { serverApi: ServerApiVersion.v1 });
   
   try {
-    await mongoose.connect(dbUri);
+    client.connect(err => {
+      const collection = client.db("test").collection("devices");
+      // perform actions on the collection object
+      client.close();
+    });
     console.log("DB connected");
   } catch (error) {
-    console.error("could not connect to DB");
+    console.error("could not connect to DB", dbUri);
     process.exit(1);
   }
 }

@@ -4,7 +4,9 @@
   "main": "server.js",
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only src/app.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "deploy": "git subtree push --prefix server/ heroku Tien:main",
+    "logs:prod": "heroku logs --tail"
   },
   "license": "MIT",
   "dependencies": {
@@ -17,6 +19,7 @@
     "lodash": "^4.17.21",
     "mongoose": "^6.3.2",
     "nanoid": "^3.3.4",
+    "ts-node-dev": "^1.1.8",
     "zod": "^3.15.1"
   },
   "devDependencies": {
@@ -31,7 +34,6 @@
     "@types/nanoid": "^3.0.0",
     "@types/node": "^17.0.31",
     "nodemon": "^2.0.16",
-    "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.4"
   }
 }

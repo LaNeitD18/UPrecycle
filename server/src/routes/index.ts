@@ -1,4 +1,4 @@
-import userRoute from "./userRoute";
+import userRoute from "./user.route";
 
 export {
   userRoute,

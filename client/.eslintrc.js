@@ -2,12 +2,11 @@ module.exports = {
   root: true,
   extends: ['airbnb', 'plugin:react/recommended', 'prettier'],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  plugins: ['react', 'react-native', 'react-hooks'],
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
       rules: {
-        '@typescript-eslint/no-shadow': ['error'],
         'no-shadow': 'off',
         'no-undef': 'off',
       },

@@ -9,7 +9,6 @@ const App = () => {
   const [user, setUser] = useState();
 
   // Handle user state changes
-  // eslint-disable-next-line @typescript-eslint/no-shadow
   function onAuthStateChanged(user: any) {
     setUser(user);
     if (initializing) setInitializing(false);

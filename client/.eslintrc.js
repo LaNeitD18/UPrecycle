@@ -1,18 +1,20 @@
 module.exports = {
-  root: true,
-  extends: ['airbnb', 'plugin:react/recommended', 'prettier'],
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: ['plugin:react/recommended', 'airbnb'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react', 'react-native', 'react-hooks'],
-  // overrides: [
-  //   {
-  //     files: ['*.ts', '*.tsx'],
-  //     rules: {
-  //       'no-shadow': 'off',
-  //       'no-undef': 'off',
-  //     },
-  //   },
-  // ],
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+  },
+  plugins: ['react', '@typescript-eslint'],
   rules: {
+    'linebreak-style': 0,
     'react/function-component-definition': [
       2,
       {
@@ -20,7 +22,12 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
-    'react/jsx-filename-extension': ['error', {extensions: ['.ts', '.tsx']}],
+    'react/jsx-filename-extension': [
+      'error',
+      {
+        extensions: ['.ts', '.tsx'],
+      },
+    ],
     'import/no-unresolved': 'off',
     'import/extensions': ['error', 'never'],
   },

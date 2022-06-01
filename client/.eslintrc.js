@@ -3,15 +3,15 @@ module.exports = {
   extends: ['airbnb', 'plugin:react/recommended', 'prettier'],
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'react-native', 'react-hooks'],
-  overrides: [
-    {
-      files: ['*.ts', '*.tsx'],
-      rules: {
-        'no-shadow': 'off',
-        'no-undef': 'off',
-      },
-    },
-  ],
+  // overrides: [
+  //   {
+  //     files: ['*.ts', '*.tsx'],
+  //     rules: {
+  //       'no-shadow': 'off',
+  //       'no-undef': 'off',
+  //     },
+  //   },
+  // ],
   rules: {
     'react/function-component-definition': [
       2,

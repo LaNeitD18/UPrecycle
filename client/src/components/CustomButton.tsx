@@ -1,29 +1,34 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { colors } from "../constants";
 
 type Props = {
   label: string;
   onPress: () => void;
+  // eslint-disable-next-line react/require-default-props
   buttonColor?: string;
+  // eslint-disable-next-line react/require-default-props
   textColor?: string;
-}
+};
 
 const CustomButton: React.FC<Props> = ({
   label,
   onPress,
   buttonColor = colors.primary,
-  textColor = colors.white,
-}) => {
-  return (
-    <TouchableOpacity 
-      onPress={onPress} 
-      style={[styles.button, { backgroundColor: buttonColor }]}
-    >
-      <Text style={[styles.text, { color: textColor }]}>{label}</Text>
-    </TouchableOpacity>
-  )
-}
+  textColor = colors.white
+}) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={[
+      styles.button,
+      {
+        backgroundColor: buttonColor
+      }
+    ]}
+  >
+    <Text style={[styles.text, { color: textColor }]}>{label}</Text>
+  </TouchableOpacity>
+);
 
 export default CustomButton;
 

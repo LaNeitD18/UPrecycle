@@ -1,4 +1,5 @@
 import { Dimensions } from "react-native";
+
 const { width, height } = Dimensions.get("screen");
 
 export const sizes = {
@@ -21,8 +22,8 @@ export const sizes = {
 
   fulllandscape: {
     width: width > height ? width : height,
-    height: width > height ? height : width,
-  },
+    height: width > height ? height : width
+  }
 };
 
 export const colors = {
@@ -57,5 +58,5 @@ export const colors = {
   black12: "rgba(30, 31, 32, 0.12)",
   smoke: "whitesmoke",
   darkgray: "#898C95",
-  transparent: "transparent",
+  transparent: "transparent"
 };

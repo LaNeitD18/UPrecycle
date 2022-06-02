@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const HomeScreen = () => (
+const NewsScreen = () => (
   <View>
-    <Text>Home screen </Text>
+    <Text>News screen</Text>
   </View>
 );
 
-export default HomeScreen;
+export default NewsScreen;

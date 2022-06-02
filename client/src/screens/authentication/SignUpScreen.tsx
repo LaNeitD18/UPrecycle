@@ -1,14 +1,13 @@
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { Icon } from "@rneui/themed";
-import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Alert, ActivityIndicator } from "react-native";
-import CustomButton from "../../components/CustomButton";
-import CustomInput from "../../components/CustomInput";
+import auth from "@react-native-firebase/auth";
+
+import { CustomButton, CustomInput } from "../../components";
 import { colors } from "../../constants";
 import { AuthStackParams } from "../../navigation/AuthenticationNavigator";
-
-import auth from "@react-native-firebase/auth";
 import UPrecycleText from "../../assets/i18n/vn";
 
 const SignUpScreen = () => {
@@ -16,29 +15,29 @@ const SignUpScreen = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const [setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     if (errorMessage !== "") {
-      Alert.alert("Thông báo", errorMessage);
+      Alert.alert(UPrecycleText.NOTIFICATION, errorMessage);
     }
   }, [errorMessage]);
 
   const reset = () => {
     setEmail("");
     setPassword("");
-    setIsLoading(false);
+    // setIsLoading(false);
   };
 
   const registerUser = () => {
     if (email === "" || password === "") {
-      setErrorMessage("Không thể để trống email hoặc password!");
-      Alert.alert("Thông báo", errorMessage, [
-        { text: "OK", onPress: () => setErrorMessage("") },
+      setErrorMessage(UPrecycleText.EMPTY_EMAIL_OR_PASSWORD);
+      Alert.alert(UPrecycleText.NOTIFICATION, errorMessage, [
+        { text: "OK", onPress: () => setErrorMessage("") }
       ]);
     } else {
-      setIsLoading(true);
+      // setIsLoading(true);
 
       auth()
         .createUserWithEmailAndPassword(email, password)
@@ -48,8 +47,8 @@ const SignUpScreen = () => {
           reset();
         })
         .catch((error) => {
-          // set isLoading to false b/c if not, SignUpScreen will return Loading screen and stay there
-          setIsLoading(false);
+          // set isLoading to false b/c if not, SignUpScreen will return Loading screen & stay there
+          // setIsLoading(false);
 
           if (error.code === "auth/email-already-in-use") {
             setErrorMessage(UPrecycleText.EMAIL_ALREADY_IN_USE);
@@ -58,10 +57,9 @@ const SignUpScreen = () => {
           } else if (error.code === "auth/weak-password") {
             setErrorMessage(UPrecycleText.WEAK_PASSWORD);
           }
-          Alert.alert("Thông báo", errorMessage, [
-            { text: "OK", onPress: () => setErrorMessage("") },
+          Alert.alert(UPrecycleText.NOTIFICATION, errorMessage, [
+            { text: "OK", onPress: () => setErrorMessage("") }
           ]);
-          console.log(error);
         });
     }
   };
@@ -87,38 +85,37 @@ const SignUpScreen = () => {
       </View>
       <View style={styles.footer}>
         <CustomInput
-          label="Email"
-          placeholder="Nhập email"
+          label={UPrecycleText.EMAIL}
+          placeholder={UPrecycleText.INPUT_EMAIL}
           onChangeText={setEmail}
         />
 
         <CustomInput
-          label="Mật khẩu"
-          placeholder="Nhập mật khẩu"
-          security={true}
+          label={UPrecycleText.PASSWORD}
+          placeholder={UPrecycleText.INPUT_PASSWORD}
+          security
           onChangeText={setPassword}
         />
 
         <View style={{ height: 16 }} />
 
         <CustomButton
-          label="Đăng ký"
+          label={UPrecycleText.SIGN_UP}
           buttonColor="white"
           textColor="black"
           onPress={registerUser}
         />
-
       </View>
     </View>
   );
-}
+};
 
 export default SignUpScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary
   },
   header: {
     flex: 1,
@@ -126,9 +123,9 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 2,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
     padding: 32
-  },
+  }
 });

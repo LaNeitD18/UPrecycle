@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
-import { colors } from "../../constants";
 import auth from "@react-native-firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+import { colors } from "../../constants";
 import { AuthStackParams } from "../../navigation/AuthenticationNavigator";
-import CustomInput from "../../components/CustomInput";
-import CustomButton from "../../components/CustomButton";
+import { CustomButton, CustomInput } from "../../components";
 import UPrecycleText from "../../assets/i18n/vn";
 
 type authScreenProp = NativeStackNavigationProp<AuthStackParams>;
@@ -34,7 +34,7 @@ const SignInScreen = () => {
       setErrorMessage(UPrecycleText.EMPTY_EMAIL_OR_PASSWORD);
 
       Alert.alert(UPrecycleText.NOTIFICATION, errorMessage, [
-        { text: "OK", onPress: () => setErrorMessage("") },
+        { text: "OK", onPress: () => setErrorMessage("") }
       ]);
     } else {
       // setIsLoading(true);
@@ -51,19 +51,15 @@ const SignInScreen = () => {
           } else if (error.code === "auth/invalid-email") {
             setErrorMessage(UPrecycleText.INVALID_EMAIL);
           } else if (
-            error.code === "auth/wrong-password" ||
-            error.code === "auth/user-not-found"
+            error.code === "auth/wrong-password"
+            || error.code === "auth/user-not-found"
           ) {
             setErrorMessage(UPrecycleText.WRONG_EMAIL_OR_PASSWORD);
           }
           Alert.alert(UPrecycleText.NOTIFICATION, errorMessage, [
-            { text: "OK", onPress: () => setErrorMessage("") },
+            { text: "OK", onPress: () => setErrorMessage("") }
           ]);
-          console.log(error);
         });
-
-      // Notifications.dismissAllNotificationsAsync();
-      // askPermissions();
     }
   };
 
@@ -73,33 +69,27 @@ const SignInScreen = () => {
         <Text>Header</Text>
       </View>
       <View style={styles.footer}>
-        <CustomInput 
+        <CustomInput
           label={UPrecycleText.EMAIL}
           placeholder={UPrecycleText.INPUT_EMAIL}
           onChangeText={setEmail}
         />
-
-        <CustomInput 
+        <CustomInput
           label={UPrecycleText.PASSWORD}
           placeholder={UPrecycleText.INPUT_PASSWORD}
-          security={true}
+          security
           onChangeText={setPassword}
         />
 
         <View style={{ height: 16 }} />
 
-        <CustomButton 
-          label={UPrecycleText.SIGN_IN}
-          onPress={userLogin}
-        />
-
-        <CustomButton 
+        <CustomButton label={UPrecycleText.SIGN_IN} onPress={userLogin} />
+        <CustomButton
           label={UPrecycleText.SIGN_UP}
           buttonColor="white"
           textColor="black"
           onPress={() => navigation.navigate("SignUp")}
         />
-
       </View>
     </View>
   );
@@ -110,18 +100,18 @@ export default SignInScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary
   },
   header: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center"
   },
   footer: {
     flex: 2,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
     padding: 32
-  },
+  }
 });

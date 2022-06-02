@@ -12,7 +12,7 @@ const UPrecycleText = {
   PASSWORD: "Mật khẩu",
   INPUT_PASSWORD: "Nhập mật khẩu",
   SIGN_IN: "Đăng nhập",
-  SIGN_UP: "Đăng ký",
-}
+  SIGN_UP: "Đăng ký"
+};
 
 export default UPrecycleText;

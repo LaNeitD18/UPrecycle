@@ -1,17 +1,25 @@
-import { faBell, faKey, faRightFromBracket, faUser } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import React from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  faBell,
+  faKey,
+  faRightFromBracket,
+  faUser
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import auth from "@react-native-firebase/auth";
+
 import { colors, sizes } from "../../constants";
 import SettingRow from "./components/SettingRow";
-import auth from '@react-native-firebase/auth';
+
+const userImage = require("../../assets/images/user.png");
 
 const SettingsScreen = () => {
   const signOut = () => {
     auth()
       .signOut()
-      .then(() => console.log('User signed out!'))
-  }
+      .then(() => console.log("User signed out!"));
+  };
 
   return (
     <View style={styles.container}>
@@ -21,16 +29,16 @@ const SettingsScreen = () => {
             alignSelf: "center",
             width: 128,
             height: 128,
-            marginBottom: 8,
+            marginBottom: 8
           }}
-          source={require("../../assets/images/user.png")}
+          source={userImage}
         />
         <Text
           style={{
             fontWeight: "bold",
             alignSelf: "center",
             fontSize: sizes.h2,
-            marginBottom: 8,
+            marginBottom: 8
           }}
         >
           User Name Here
@@ -39,40 +47,36 @@ const SettingsScreen = () => {
           style={{
             alignSelf: "center",
             fontSize: sizes.base,
-            color: colors.darkgray,
+            color: colors.darkgray
           }}
         >
           Email Here@gm.com
         </Text>
       </View>
       <View style={styles.body}>
-          <View>
-            <SettingRow
-              icon={ faUser }
-              text="Thông tin người dùng"
-              onPress={() => {}}
-            />
-            <SettingRow
-              icon={ faKey }
-              text="Thay đổi mật khẩu"
-              onPress={() => {}}
-            />
-            <SettingRow
-              icon={ faBell }
-              text="Thông báo"
-              onPress={() => {}}
-            />
-          </View>
-          <View style={styles.signOutBtnView}>
-            <TouchableOpacity style={styles.signOutBtn} onPress={signOut}>
-              <FontAwesomeIcon icon={ faRightFromBracket } color={colors.red} />
-              <Text style={styles.signOutBtnText}>Đăng xuất</Text>
-            </TouchableOpacity>
-          </View>
+        <View>
+          <SettingRow
+            icon={faUser}
+            text="Thông tin người dùng"
+            onPress={() => {}}
+          />
+          <SettingRow
+            icon={faKey}
+            text="Thay đổi mật khẩu"
+            onPress={() => {}}
+          />
+          <SettingRow icon={faBell} text="Thông báo" onPress={() => {}} />
+        </View>
+        <View style={styles.signOutBtnView}>
+          <TouchableOpacity style={styles.signOutBtn} onPress={signOut}>
+            <FontAwesomeIcon icon={faRightFromBracket} color={colors.red} />
+            <Text style={styles.signOutBtnText}>Đăng xuất</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
-}
+};
 
 export default SettingsScreen;
 
@@ -84,7 +88,7 @@ const styles = StyleSheet.create({
   },
   header: {
     marginBottom: 16,
-    flex: 1,
+    flex: 1
   },
   body: {
     backgroundColor: "white",
@@ -94,7 +98,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 16,
     flex: 2,
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   signOutBtnView: {
     width: "100%",
@@ -104,12 +108,12 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    marginHorizontal: 8,
+    marginHorizontal: 8
   },
   signOutBtnText: {
     fontSize: sizes.base,
     color: colors.red,
     fontWeight: "600",
-    marginHorizontal: 8,
+    marginHorizontal: 8
   }
 });

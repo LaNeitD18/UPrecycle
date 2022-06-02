@@ -83,6 +83,8 @@ const TempScreen = () => {
   )
 }
 
+export default TempScreen;
+
 const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,

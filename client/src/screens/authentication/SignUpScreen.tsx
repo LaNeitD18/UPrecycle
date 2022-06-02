@@ -87,14 +87,14 @@ const SignUpScreen = () => {
       </View>
       <View style={styles.footer}>
         <CustomInput
-          label="Email"
-          placeholder="Nhập email"
+          label={UPrecycleText.EMAIL}
+          placeholder={UPrecycleText.INPUT_EMAIL}
           onChangeText={setEmail}
         />
 
         <CustomInput
-          label="Mật khẩu"
-          placeholder="Nhập mật khẩu"
+          label={UPrecycleText.PASSWORD}
+          placeholder={UPrecycleText.INPUT_PASSWORD}
           security={true}
           onChangeText={setPassword}
         />
@@ -102,7 +102,7 @@ const SignUpScreen = () => {
         <View style={{ height: 16 }} />
 
         <CustomButton
-          label="Đăng ký"
+          label={UPrecycleText.SIGN_UP}
           buttonColor="white"
           textColor="black"
           onPress={registerUser}

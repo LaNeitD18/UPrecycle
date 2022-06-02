@@ -9,69 +9,62 @@ type Props = {
   label?: string;
   placeholder?: string;
   security?: boolean;
-  onChangeText?: (text: string) => void
+  // eslint-disable-next-line no-unused-vars
+  onChangeText?: (text: string) => void;
 };
 
 const CustomInput: React.FC<Props> = ({
   label,
   placeholder,
   security = false,
-  onChangeText,
-}) => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.labelText}>{label}</Text>
-      <View style={styles.inputRow}>
-        <FontAwesomeIcon 
-          icon={ security ? faLock : faUser }
-          size={20}
-          style={styles.icon}
-        />
-        <TextInput
-          placeholder={placeholder}
-          style={styles.input}
-          secureTextEntry={security}
-          onChangeText={onChangeText}
-        />
-        {
-          security 
-          ? (
-            <FontAwesomeIcon icon={ faEyeSlash } size={20} />
-          )
-          : null
-        }
-      </View>
+  onChangeText
+}) => (
+  <View style={styles.container}>
+    <Text style={styles.labelText}>{label}</Text>
+    <View style={styles.inputRow}>
+      <FontAwesomeIcon
+        icon={security ? faLock : faUser}
+        size={20}
+        style={styles.icon}
+      />
+      <TextInput
+        placeholder={placeholder}
+        style={styles.input}
+        secureTextEntry={security}
+        onChangeText={onChangeText}
+      />
+      {security ? <FontAwesomeIcon icon={faEyeSlash} size={20} /> : null}
     </View>
-  );
-};
+  </View>
+);
 
 export default CustomInput;
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 12,
+    marginVertical: 12
   },
   labelText: {
     color: colors.black,
-    fontSize: 18,
+    fontSize: 18
   },
   inputRow: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 8,
     paddingHorizontal: 8,
     height: 50,
-    backgroundColor: 'white',
-    alignItems: 'center',
+    backgroundColor: "white",
+    alignItems: "center",
     borderRadius: 8,
     shadowColor: "#000",
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 5
   },
   input: {
     flex: 1,
     paddingLeft: 8,
-    color: '#05375a',
+    color: "#05375a",
     fontSize: 16
   },
   icon: {

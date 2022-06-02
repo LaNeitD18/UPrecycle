@@ -11,6 +11,7 @@ import auth from "@react-native-firebase/auth";
 
 import { colors, sizes } from "../../constants";
 import SettingRow from "./components/SettingRow";
+import UPrecycleText from "../../assets/i18n/vn";
 
 const userImage = require("../../assets/images/user.png");
 
@@ -57,20 +58,24 @@ const SettingsScreen = () => {
         <View>
           <SettingRow
             icon={faUser}
-            text="Thông tin người dùng"
+            text={UPrecycleText.USER_INFO}
             onPress={() => {}}
           />
           <SettingRow
             icon={faKey}
-            text="Thay đổi mật khẩu"
+            text={UPrecycleText.CHANGE_PASSWORD}
             onPress={() => {}}
           />
-          <SettingRow icon={faBell} text="Thông báo" onPress={() => {}} />
+          <SettingRow
+            icon={faBell}
+            text={UPrecycleText.NOTIFICATION}
+            onPress={() => {}}
+          />
         </View>
         <View style={styles.signOutBtnView}>
           <TouchableOpacity style={styles.signOutBtn} onPress={signOut}>
             <FontAwesomeIcon icon={faRightFromBracket} color={colors.red} />
-            <Text style={styles.signOutBtnText}>Đăng xuất</Text>
+            <Text style={styles.signOutBtnText}>{UPrecycleText.SIGN_OUT}</Text>
           </TouchableOpacity>
         </View>
       </View>

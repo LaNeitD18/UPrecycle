@@ -20,7 +20,7 @@ const SignUpScreen = () => {
 
   useEffect(() => {
     if (errorMessage !== "") {
-      Alert.alert("Thông báo", errorMessage);
+      Alert.alert(UPrecycleText.NOTIFICATION, errorMessage);
     }
   }, [errorMessage]);
 
@@ -32,8 +32,8 @@ const SignUpScreen = () => {
 
   const registerUser = () => {
     if (email === "" || password === "") {
-      setErrorMessage("Không thể để trống email hoặc password!");
-      Alert.alert("Thông báo", errorMessage, [
+      setErrorMessage(UPrecycleText.EMPTY_EMAIL_OR_PASSWORD);
+      Alert.alert(UPrecycleText.NOTIFICATION, errorMessage, [
         { text: "OK", onPress: () => setErrorMessage("") }
       ]);
     } else {
@@ -57,7 +57,7 @@ const SignUpScreen = () => {
           } else if (error.code === "auth/weak-password") {
             setErrorMessage(UPrecycleText.WEAK_PASSWORD);
           }
-          Alert.alert("Thông báo", errorMessage, [
+          Alert.alert(UPrecycleText.NOTIFICATION, errorMessage, [
             { text: "OK", onPress: () => setErrorMessage("") }
           ]);
         });

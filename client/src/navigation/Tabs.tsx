@@ -11,6 +11,7 @@ import {
 
 import { colors } from "../constants";
 import { HomeScreen, NewsScreen, SettingsScreen, TempScreen } from "../screens";
+import UPrecycleText from "../assets/i18n/vn";
 
 const Tab = createBottomTabNavigator();
 
@@ -27,7 +28,7 @@ const Tabs = () => (
             color={focused ? colors.primary : colors.darkgray}
           />
         ),
-        title: "Trang chủ",
+        title: UPrecycleText.HOME_SCREEN,
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.darkgray,
         tabBarLabelStyle: styles.tabBarLabel
@@ -44,7 +45,7 @@ const Tabs = () => (
             color={focused ? colors.primary : colors.darkgray}
           />
         ),
-        title: "Tin tức",
+        title: UPrecycleText.NEWS_SCREEN,
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.darkgray,
         tabBarLabelStyle: styles.tabBarLabel
@@ -61,7 +62,7 @@ const Tabs = () => (
             color={focused ? colors.primary : colors.darkgray}
           />
         ),
-        title: "Phân loại",
+        title: UPrecycleText.CLASSIFICATION_SCREEN,
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.darkgray,
         tabBarLabelStyle: styles.tabBarLabel
@@ -78,7 +79,7 @@ const Tabs = () => (
             color={focused ? colors.primary : colors.darkgray}
           />
         ),
-        title: "Tùy chỉnh",
+        title: UPrecycleText.SETTINGS_SCREEN,
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.darkgray,
         tabBarLabelStyle: styles.tabBarLabel

@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
-import auth from "@react-native-firebase/auth";
+import { View, StyleSheet, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { Icon } from "@rneui/themed";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  updateProfile
+} from "firebase/auth";
 
+import { CustomButton, CustomInput } from "../../components";
 import { colors } from "../../constants";
 import { AuthStackParams } from "../../navigation/AuthenticationNavigator";
-import { CustomButton, CustomInput } from "../../components";
 import UPrecycleText from "../../assets/i18n/vn";
+import { firebaseApp } from "../../api/firebase";
 
-type authScreenProp = NativeStackNavigationProp<AuthStackParams>;
-
-const SignInScreen = () => {
-  const navigation = useNavigation<authScreenProp>();
+const SignUpScreen = () => {
+  const auth = getAuth(firebaseApp);
+  const navigation = useNavigation<NativeStackNavigationProp<AuthStackParams>>();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const [setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
@@ -24,36 +30,40 @@ const SignInScreen = () => {
     }
   }, [errorMessage]);
 
-  const reset = () => {
+  const clearInput = () => {
     setEmail("");
     setPassword("");
+    // setIsLoading(false);
   };
 
-  const userLogin = () => {
+  const registerUser = () => {
     if (email === "" || password === "") {
       setErrorMessage(UPrecycleText.EMPTY_EMAIL_OR_PASSWORD);
-
       Alert.alert(UPrecycleText.NOTIFICATION, errorMessage, [
         { text: "OK", onPress: () => setErrorMessage("") }
       ]);
     } else {
       // setIsLoading(true);
+      const accountName = email.split("@")[0];
 
-      auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(() => {
-          reset();
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((res) => {
+          updateProfile(res.user, {
+            displayName: accountName
+          });
+          clearInput();
+          navigation.navigate("SignIn");
         })
         .catch((error) => {
+          // set isLoading to false b/c if not, SignUpScreen will return Loading screen & stay there
+          // setIsLoading(false);
+
           if (error.code === "auth/email-already-in-use") {
             setErrorMessage(UPrecycleText.EMAIL_ALREADY_IN_USE);
           } else if (error.code === "auth/invalid-email") {
             setErrorMessage(UPrecycleText.INVALID_EMAIL);
-          } else if (
-            error.code === "auth/wrong-password"
-            || error.code === "auth/user-not-found"
-          ) {
-            setErrorMessage(UPrecycleText.WRONG_EMAIL_OR_PASSWORD);
+          } else if (error.code === "auth/weak-password") {
+            setErrorMessage(UPrecycleText.WEAK_PASSWORD);
           }
           Alert.alert(UPrecycleText.NOTIFICATION, errorMessage, [
             { text: "OK", onPress: () => setErrorMessage("") }
@@ -62,10 +72,24 @@ const SignInScreen = () => {
     }
   };
 
+  // if (isLoading) {
+  //   return (
+  //     <View>
+  //       <ActivityIndicator size="large" color="#9E9E9E" />
+  //     </View>
+  //   );
+  // }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text>Header</Text>
+        <Icon
+          name="arrow-back"
+          size={32}
+          color={colors.white}
+          style={{ width: 32 }}
+          onPress={() => navigation.goBack()}
+        />
       </View>
       <View style={styles.footer}>
         <CustomInput
@@ -73,6 +97,7 @@ const SignInScreen = () => {
           placeholder={UPrecycleText.INPUT_EMAIL}
           onChangeText={setEmail}
         />
+
         <CustomInput
           label={UPrecycleText.PASSWORD}
           placeholder={UPrecycleText.INPUT_PASSWORD}
@@ -82,19 +107,18 @@ const SignInScreen = () => {
 
         <View style={{ height: 16 }} />
 
-        <CustomButton label={UPrecycleText.SIGN_IN} onPress={userLogin} />
         <CustomButton
           label={UPrecycleText.SIGN_UP}
           buttonColor="white"
           textColor="black"
-          onPress={() => navigation.navigate("SignUp")}
+          onPress={registerUser}
         />
       </View>
     </View>
   );
 };
 
-export default SignInScreen;
+export default SignUpScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -103,8 +127,7 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    padding: 16
   },
   footer: {
     flex: 2,

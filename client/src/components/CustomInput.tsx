@@ -1,13 +1,19 @@
-import React from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableOpacity
+} from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faUser, faLock, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import { colors } from "../constants";
 
 type Props = {
-  label?: string;
-  placeholder?: string;
+  label: string;
+  placeholder: string;
   security?: boolean;
   // eslint-disable-next-line no-unused-vars
   onChangeText?: (text: string) => void;
@@ -18,25 +24,33 @@ const CustomInput: React.FC<Props> = ({
   placeholder,
   security = false,
   onChangeText
-}) => (
-  <View style={styles.container}>
-    <Text style={styles.labelText}>{label}</Text>
-    <View style={styles.inputRow}>
-      <FontAwesomeIcon
-        icon={security ? faLock : faUser}
-        size={20}
-        style={styles.icon}
-      />
-      <TextInput
-        placeholder={placeholder}
-        style={styles.input}
-        secureTextEntry={security}
-        onChangeText={onChangeText}
-      />
-      {security ? <FontAwesomeIcon icon={faEyeSlash} size={20} /> : null}
+}) => {
+  const [hidePassword, setHidePassword] = useState(security);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.labelText}>{label}</Text>
+      <View style={styles.inputRow}>
+        <FontAwesomeIcon
+          icon={security ? faLock : faUser}
+          size={20}
+          style={styles.icon}
+        />
+        <TextInput
+          placeholder={placeholder}
+          style={styles.input}
+          secureTextEntry={hidePassword}
+          onChangeText={onChangeText}
+        />
+        {security ? (
+          <TouchableOpacity onPress={() => setHidePassword(!hidePassword)}>
+            <FontAwesomeIcon icon={faEyeSlash} size={20} />
+          </TouchableOpacity>
+        ) : null}
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 export default CustomInput;
 

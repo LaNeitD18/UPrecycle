@@ -24,7 +24,7 @@ const SignUpScreen = () => {
     }
   }, [errorMessage]);
 
-  const reset = () => {
+  const clearInput = () => {
     setEmail("");
     setPassword("");
     // setIsLoading(false);
@@ -38,13 +38,16 @@ const SignUpScreen = () => {
       ]);
     } else {
       // setIsLoading(true);
+      const accountName = email.split("@")[0];
 
       auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(() => {
-          // const { uid } = auth().currentUser;
+        .then((res) => {
+          res.user.updateProfile({
+            displayName: accountName
+          });
+          clearInput();
           navigation.navigate("SignIn");
-          reset();
         })
         .catch((error) => {
           // set isLoading to false b/c if not, SignUpScreen will return Loading screen & stay there

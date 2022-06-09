@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import auth from "@react-native-firebase/auth";
+import { Provider } from "react-redux";
+
 import AuthenticationNavigator from "./src/navigation/AuthenticationNavigator";
 import MainNavigator from "./src/navigation/MainNavigator";
+import store from "./src/redux/store";
 
 const App = () => {
   // Set an initializing state whilst Firebase connects
@@ -23,7 +26,11 @@ const App = () => {
   if (initializing) return null;
 
   if (user) {
-    return <MainNavigator />;
+    return (
+      <Provider store={store}>
+        <MainNavigator />
+      </Provider>
+    );
   }
   return <AuthenticationNavigator />;
 };

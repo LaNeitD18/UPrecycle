@@ -60,3 +60,8 @@ export const colors = {
   darkgray: "#898C95",
   transparent: "transparent"
 };
+
+export const APIConfigs = {
+  BASE_URL: "http://10.0.2.2:5000",
+  TIMEOUT_DURATION: 10000
+};

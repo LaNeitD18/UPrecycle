@@ -1,6 +1,11 @@
 const UPrecycleText = {
   NOTIFICATION: "Thông báo",
 
+  // API CONNECTION ERROR
+  ERROR_ENCOUNTERED: "Error was encountered processing this request",
+  ERROR_TIMEOUT:
+    "We are unable to fetch data at this time, kindly check your internet connection and we'll reconnect you.",
+
   // AUTH SCREENS
   EMAIL_ALREADY_IN_USE: "Tài khoản đã được sử dụng.",
   INVALID_EMAIL: "Email không hợp lệ!",
@@ -12,6 +17,8 @@ const UPrecycleText = {
   INPUT_EMAIL: "Nhập email",
   PASSWORD: "Mật khẩu",
   INPUT_PASSWORD: "Nhập mật khẩu",
+  ACCOUNT_NAME: "Tên tài khoản",
+  INPUT_ACCOUNT_NAME: "Nhập tên tài khoản",
   SIGN_IN: "Đăng nhập",
   SIGN_UP: "Đăng ký",
 

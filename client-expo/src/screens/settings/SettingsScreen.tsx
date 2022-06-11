@@ -12,11 +12,13 @@ import { signOut, getAuth } from "firebase/auth";
 import { colors, sizes } from "../../constants";
 import SettingRow from "./components/SettingRow";
 import UPrecycleText from "../../assets/i18n/vn";
+import { useAppSelector } from "../../hooks/reduxHooks";
 
 const userImage = require("../../assets/images/user.png");
 
 const SettingsScreen = () => {
   const auth = getAuth();
+  const user = useAppSelector((state) => state.user);
 
   const handleSignOut = () => {
     signOut(auth).then(() => console.log("User signed out!"));
@@ -42,7 +44,7 @@ const SettingsScreen = () => {
             marginBottom: 8
           }}
         >
-          User Name Here
+          {user.name}
         </Text>
         <Text
           style={{
@@ -51,7 +53,7 @@ const SettingsScreen = () => {
             color: colors.darkgray
           }}
         >
-          Email Here@gm.com
+          {user.email}
         </Text>
       </View>
       <View style={styles.body}>

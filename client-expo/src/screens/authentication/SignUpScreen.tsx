@@ -6,7 +6,8 @@ import { Icon } from "@rneui/themed";
 import {
   createUserWithEmailAndPassword,
   getAuth,
-  updateProfile
+  updateProfile,
+  User
 } from "firebase/auth";
 
 import { CustomButton, CustomInput } from "../../components";
@@ -14,12 +15,13 @@ import { colors } from "../../constants";
 import { AuthStackParams } from "../../navigation/AuthenticationNavigator";
 import UPrecycleText from "../../assets/i18n/vn";
 import { firebaseApp } from "../../api/firebase";
+import { addUser } from "../../api/user";
 
 const SignUpScreen = () => {
   const auth = getAuth(firebaseApp);
   const navigation = useNavigation<NativeStackNavigationProp<AuthStackParams>>();
 
-  const [email, setEmail] = useState("");
+  const [emailInput, setEmailInput] = useState("");
   const [password, setPassword] = useState("");
   // const [setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -28,29 +30,43 @@ const SignUpScreen = () => {
     if (errorMessage !== "") {
       Alert.alert(UPrecycleText.NOTIFICATION, errorMessage);
     }
+    return () => {
+      setErrorMessage("");
+    };
   }, [errorMessage]);
 
   const clearInput = () => {
-    setEmail("");
+    setEmailInput("");
     setPassword("");
     // setIsLoading(false);
   };
 
+  const addNewUser = async (user: User) => {
+    const { uid, displayName, email } = user;
+    const userData = {
+      id: uid,
+      name: displayName,
+      email
+    };
+    await addUser(userData);
+  };
+
   const registerUser = () => {
-    if (email === "" || password === "") {
+    if (emailInput === "" || password === "") {
       setErrorMessage(UPrecycleText.EMPTY_EMAIL_OR_PASSWORD);
       Alert.alert(UPrecycleText.NOTIFICATION, errorMessage, [
         { text: "OK", onPress: () => setErrorMessage("") }
       ]);
     } else {
       // setIsLoading(true);
-      const accountName = email.split("@")[0];
+      const accountName = emailInput.split("@")[0];
 
-      createUserWithEmailAndPassword(auth, email, password)
-        .then((res) => {
-          updateProfile(res.user, {
+      createUserWithEmailAndPassword(auth, emailInput, password)
+        .then(async (res) => {
+          await updateProfile(res.user, {
             displayName: accountName
           });
+          addNewUser(res.user);
           clearInput();
           navigation.navigate("SignIn");
         })
@@ -95,7 +111,7 @@ const SignUpScreen = () => {
         <CustomInput
           label={UPrecycleText.EMAIL}
           placeholder={UPrecycleText.INPUT_EMAIL}
-          onChangeText={setEmail}
+          onChangeText={setEmailInput}
         />
 
         <CustomInput

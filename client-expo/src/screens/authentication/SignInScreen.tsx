@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
-import auth from "@react-native-firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import { colors } from "../../constants";
 import { AuthStackParams } from "../../navigation/AuthenticationNavigator";
 import { CustomButton, CustomInput } from "../../components";
 import UPrecycleText from "../../assets/i18n/vn";
+import { firebaseApp } from "../../api/firebase";
 
 type authScreenProp = NativeStackNavigationProp<AuthStackParams>;
 
 const SignInScreen = () => {
+  const auth = getAuth(firebaseApp);
   const navigation = useNavigation<authScreenProp>();
 
   const [email, setEmail] = useState("");
@@ -22,6 +24,9 @@ const SignInScreen = () => {
     if (errorMessage !== "") {
       Alert.alert(UPrecycleText.NOTIFICATION, errorMessage);
     }
+    return () => {
+      setErrorMessage("");
+    };
   }, [errorMessage]);
 
   const reset = () => {
@@ -39,8 +44,7 @@ const SignInScreen = () => {
     } else {
       // setIsLoading(true);
 
-      auth()
-        .signInWithEmailAndPassword(email, password)
+      signInWithEmailAndPassword(auth, email, password)
         .then(() => {
           reset();
         })

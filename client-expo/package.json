@@ -1,23 +1,21 @@
 {
-  "name": "uprecycle",
-  "version": "0.0.1",
-  "private": true,
+  "name": "client-expo",
+  "version": "1.0.0",
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "start:reset": "react-native start --reset-cache",
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
     "lint-staged:eslint": "eslint --cache --fix --ext .js,.jsx,.ts,tsx",
     "lint-staged:prettier": "prettier -c --write"
   },
   "dependencies": {
+    "@expo/metro-config": "^0.3.18",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-native-fontawesome": "^0.2.7",
-    "@react-native-firebase/app": "^14.9.3",
-    "@react-native-firebase/auth": "^14.9.3",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
@@ -25,15 +23,20 @@
     "@rneui/base": "^4.0.0-rc.3",
     "@rneui/themed": "^4.0.0-rc.3",
     "axios": "^0.27.2",
+    "expo": "~45.0.0",
+    "expo-status-bar": "~1.3.0",
+    "firebase": "^9.8.2",
     "husky": "4",
-    "npm": "^8.10.0",
     "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-firebase-hooks": "^5.0.3",
     "react-native": "0.68.2",
     "react-native-gesture-handler": "^2.4.2",
     "react-native-safe-area-context": "^4.2.5",
     "react-native-screens": "^3.13.1",
     "react-native-svg": "^12.3.0",
     "react-native-vector-icons": "^9.1.0",
+    "react-native-web": "0.17.7",
     "react-redux": "^8.0.2",
     "redux-thunk": "^2.4.1",
     "rxjs": "^7.5.5"
@@ -42,7 +45,9 @@
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
+    "@types/babel__core": "^7.1.19",
     "@types/jest": "^26.0.23",
+    "@types/react": "~17.0.21",
     "@types/react-native": "^0.67.3",
     "@types/react-redux": "^7.1.24",
     "@types/react-test-renderer": "^17.0.1",
@@ -65,24 +70,10 @@
     "react-test-renderer": "17.0.2",
     "typescript": "^4.7.3"
   },
-  "resolutions": {
-    "@types/react": "^17"
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,scss,md,json}": [
@@ -99,5 +90,6 @@
     "import/resolver": {
       "typescript": {}
     }
-  }
+  },
+  "private": true
 }

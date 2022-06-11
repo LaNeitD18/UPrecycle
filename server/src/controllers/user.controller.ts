@@ -14,9 +14,9 @@ export const getUser = async (req: Request, res: Response) => {
 
 export const addUser = async (req: Request, res: Response) => {
   try {
-    const { name, email } = req.body;
+    const { id, name, email } = req.body;
 
-    const newUser = new User({ name, email });
+    const newUser = new User({ _id: id, name, email });
     await newUser.save()
 
     return res.status(200).json(newUser)

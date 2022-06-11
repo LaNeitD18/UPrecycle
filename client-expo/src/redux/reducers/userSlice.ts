@@ -51,8 +51,8 @@ export default userSlice.reducer;
 export const fetchUser = (userId: string): AppThunk => async (dispatch) => {
   try {
     dispatch(getUserStart());
-    const user = await getUser(userId);
-    dispatch(getUserSuccess(user));
+    const response = await getUser(userId);
+    dispatch(getUserSuccess(response.data));
   } catch (err: any) {
     dispatch(getUserFailure(err.toString()));
   }

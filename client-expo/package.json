@@ -25,6 +25,8 @@
     "@rneui/themed": "^4.0.0-rc.3",
     "@tensorflow/tfjs": "^3.18.0",
     "@tensorflow/tfjs-react-native": "^0.8.0",
+    "@unimodules/core": "^7.1.2",
+    "@unimodules/react-native-adapter": "^6.3.9",
     "axios": "^0.27.2",
     "expo": "~45.0.0",
     "expo-camera": "^12.2.0",

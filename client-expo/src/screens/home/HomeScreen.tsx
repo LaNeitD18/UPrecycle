@@ -1,15 +1,22 @@
+import { faTemperature3, faWind } from "@fortawesome/free-solid-svg-icons";
+import { Divider } from "@rneui/themed";
 import { getAuth } from "firebase/auth";
 import React, { useEffect } from "react";
-import { View, Text } from "react-native";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ListCards } from "../../components";
+
+import { colors } from "../../constants";
+import { useAppDispatch } from "../../hooks/reduxHooks";
 import { fetchUser } from "../../redux/reducers/userSlice";
+import HomeHeader from "./components/HomeHeader";
+import WeatherInfo from "./components/WeatherInfo";
 
 const auth = getAuth();
 
 const HomeScreen = () => {
   const dispatch = useAppDispatch();
 
-  const user = useAppSelector((state) => state.user);
   const uid = auth.currentUser?.uid || "";
 
   useEffect(() => {
@@ -25,10 +32,33 @@ const HomeScreen = () => {
   };
 
   return (
-    <View>
-      <Text>{user.email}</Text>
-    </View>
+    <SafeAreaView style={styles.homeScreenContainer}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <HomeHeader />
+        <View style={styles.weatherRow}>
+          <WeatherInfo title="Chất lượng không khí" icon={faWind} value="40*" />
+          <Divider width={12} orientation="vertical" color={colors.white} />
+          <WeatherInfo title="Nhiệt độ" icon={faTemperature3} value="30°C" />
+        </View>
+        <ListCards title="Sự kiện" />
+        <ListCards title="Thông tin" />
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  homeScreenContainer: {
+    flex: 1,
+    paddingHorizontal: 12,
+    paddingTop: 12,
+    backgroundColor: colors.white
+  },
+  weatherRow: {
+    display: "flex",
+    flexDirection: "row",
+    marginVertical: 8
+  }
+});

@@ -1,9 +1,16 @@
+// libs
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
+// components
+import HotNews from "./mains/HotNews";
+import LastestNews from "./mains/LastestNews";
+// others
+import styles from "./styles";
 
 const NewsScreen = () => (
-  <View>
-    <Text>News screen</Text>
+  <View style={styles.newsScreenWrapper}>
+    <LastestNews title="Lastest News" />
+    <HotNews title="Hot News" />
   </View>
 );
 

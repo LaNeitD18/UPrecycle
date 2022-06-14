@@ -10,11 +10,11 @@ import { CustomButton, CustomInput } from "../../components";
 import UPrecycleText from "../../assets/i18n/vn";
 import { firebaseApp } from "../../api/firebase";
 
-type authScreenProp = NativeStackNavigationProp<AuthStackParams>;
+type AuthScreenProp = NativeStackNavigationProp<AuthStackParams>;
 
 const SignInScreen = () => {
   const auth = getAuth(firebaseApp);
-  const navigation = useNavigation<authScreenProp>();
+  const navigation = useNavigation<AuthScreenProp>();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

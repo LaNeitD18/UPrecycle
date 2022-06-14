@@ -30,6 +30,7 @@ export const colors = {
   // base colors
   primary: "#19a07b",
   secondary: "#f6ae2d",
+  lightPrimary: "#65BB7C",
 
   // colors
   black: "#1E1F20",

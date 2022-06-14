@@ -16,7 +16,7 @@ import { useAppSelector } from "../../hooks/reduxHooks";
 
 const userImage = require("../../assets/images/user.png");
 
-const SettingsScreen = () => {
+const SettingsScreen: React.FC = () => {
   const auth = getAuth();
   const user = useAppSelector((state) => state.user);
 

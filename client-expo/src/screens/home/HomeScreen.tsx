@@ -1,4 +1,5 @@
 import { faTemperature3, faWind } from "@fortawesome/free-solid-svg-icons";
+import { useNavigation } from "@react-navigation/native";
 import { Divider } from "@rneui/themed";
 import { getAuth } from "firebase/auth";
 import React, { useEffect } from "react";
@@ -8,13 +9,15 @@ import { ListCards } from "../../components";
 
 import { colors } from "../../constants";
 import { useAppDispatch } from "../../hooks/reduxHooks";
+import { MainScreensProp } from "../../navigation/MainNavigator";
 import { fetchUser } from "../../redux/reducers/userSlice";
 import HomeHeader from "./components/HomeHeader";
 import WeatherInfo from "./components/WeatherInfo";
 
 const auth = getAuth();
 
-const HomeScreen = () => {
+const HomeScreen: React.FC = () => {
+  const navigation = useNavigation<MainScreensProp>();
   const dispatch = useAppDispatch();
 
   const uid = auth.currentUser?.uid || "";
@@ -40,8 +43,14 @@ const HomeScreen = () => {
           <Divider width={12} orientation="vertical" color={colors.white} />
           <WeatherInfo title="Nhiệt độ" icon={faTemperature3} value="30°C" />
         </View>
-        <ListCards title="Sự kiện" />
-        <ListCards title="Thông tin" />
+        <ListCards
+          title="Sự kiện"
+          goToDetail={(item) => navigation.navigate("HomeNavigator", {
+            screen: "EventDetail",
+            params: { item }
+          })}
+        />
+        {/* <ListCards title="Thông tin" /> */}
       </ScrollView>
     </SafeAreaView>
   );

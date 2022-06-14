@@ -15,13 +15,15 @@ const events = [
     id: 1,
     title: "Event 1",
     address: "1/2 XVNT blabla",
-    date: "10/2/2022"
+    date: "10/2/2022",
+    uri: "https://www.facebook.com/ACCB2030/posts/577593737120613"
   },
   {
     id: 2,
     title: "event 2",
     address: "100/78 XVNT P21 Binh Thanh",
-    date: "22/10/2022"
+    date: "22/10/2022",
+    uri: "https://www.facebook.com/ACCB2030/posts/577593737120613"
   }
 ];
 
@@ -32,19 +34,25 @@ interface CardInfoRowProps {
 
 interface ListCardsProps {
   title: string;
+  goToDetail: (item: any) => void;
+  goToList?: () => void;
 }
 
-const CardInfoRow: React.FC<CardInfoRowProps> = ({ icon, content }) => (
+export const CardInfoRow: React.FC<CardInfoRowProps> = ({ icon, content }) => (
   <View style={styles.cardInfoRow}>
     <FontAwesomeIcon icon={icon} color={colors.primary} />
     <Text style={styles.infoRowContent}>{content}</Text>
   </View>
 );
 
-const ListCards: React.FC<ListCardsProps> = ({ title }) => {
+const ListCards: React.FC<ListCardsProps> = ({
+  title,
+  goToDetail,
+  goToList
+}) => {
   const renderCard = ({ item }) => (
     <Card containerStyle={styles.cardContainer}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => goToDetail(item)}>
         <Image
           style={styles.image}
           resizeMode="cover"
@@ -67,7 +75,7 @@ const ListCards: React.FC<ListCardsProps> = ({ title }) => {
     <View style={styles.listCardsContainer}>
       <View style={styles.listCardsTitleRow}>
         <Text style={styles.listCardsTitle}>{title}</Text>
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={goToList}>
           <FontAwesomeIcon icon={faAngleRight} size={20} />
         </TouchableOpacity>
       </View>

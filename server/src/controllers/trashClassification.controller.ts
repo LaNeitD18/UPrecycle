@@ -4,7 +4,6 @@ import { predictTrashType as predictTrashTypeService } from '../services/classif
 
 export const predictTrashType: RequestHandler = async function(req, res) {
   const { url }: { url: string | null | undefined } = (req.body ?? {}); 
-
   if (!url)
     return res.status(HttpStatus.BAD_REQUEST).json({ message: '"url" field is required.' });
 
@@ -13,6 +12,7 @@ export const predictTrashType: RequestHandler = async function(req, res) {
     return res.status(HttpStatus.OK).json({ predictionResult });
   }
   catch (err) {
+    console.log(err);
     return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err)
   }
 }

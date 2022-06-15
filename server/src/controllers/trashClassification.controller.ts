@@ -12,7 +12,6 @@ export const predictTrashType: RequestHandler = async function(req, res) {
     return res.status(HttpStatus.OK).json({ predictionResult });
   }
   catch (err) {
-    console.log(err);
     return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err)
   }
 }

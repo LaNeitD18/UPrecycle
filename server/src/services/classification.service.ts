@@ -25,15 +25,18 @@ async function predictWithClarifai(apiKey: string, modelId: string, imageUrl: st
     stub.PostModelOutputs(
       {
           model_id: modelId,
-          inputs: [{data: {image: {url: imageUrl}}}]
+          inputs: [{data: {image: {base64: imageUrl}}}]
       },
       metadata,
       (err: any, response: any) => {
+
         if (err)
           reject(err);
     
-        if (response.status.code !== 10000)
-          reject(err)
+        if (response?.status.code !== 10000) {
+          const errorDetails = response?.outputs.map((output: any) => output?.status?.details);
+          reject(errorDetails);
+        }
             
         resolve(response?.outputs?.[0]);
       }

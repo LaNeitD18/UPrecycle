@@ -7,15 +7,13 @@ import LastestNewsItem from "../../components/LastestNewsItem";
 import ItemSeparator from "../../../../components/ItemSeparator";
 // mocks
 import lastestNewsMock from "../../../../mocks/LastestNews";
-// others
-import styles from "./styles";
 
 interface ILastestNewsProps {
   titleList: string;
 }
 
 const LastestNews = ({ titleList }: ILastestNewsProps) => (
-  <BlankCard cardStyle={styles.lastestNewsWrapper} headingTitle={titleList}>
+  <BlankCard headingTitle={titleList}>
     <FlatList
       showsHorizontalScrollIndicator={false}
       horizontal

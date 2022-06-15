@@ -1,6 +1,6 @@
 // libs
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, ScrollView } from "react-native";
 // components
 import BlankCard from "../../../../components/BlankCard";
 import HotNewsItem from "../../components/HotNewsItem";
@@ -15,21 +15,28 @@ interface TitleProps {
 
 const HotNews = ({ titleList }: TitleProps) => (
   <BlankCard headingTitle={titleList} cardStyle={styles.hotNewsWrapper}>
-    <FlatList
-      showsVerticalScrollIndicator={false}
-      data={lastestNewsMock}
-      renderItem={({ item: { title, imageURI } }) => (
-        <HotNewsItem
-          title={title}
-          imageURI={imageURI}
-          height={80}
-          width={100}
-          resizeMode="contain"
-        />
-      )}
-      keyExtractor={(item) => item.title}
-      ItemSeparatorComponent={Divider}
-    />
+    <ScrollView
+      scrollEnabled={false}
+      showsHorizontalScrollIndicator={false}
+      horizontal
+    >
+      <FlatList
+        scrollEnabled={false}
+        showsVerticalScrollIndicator={false}
+        data={lastestNewsMock}
+        renderItem={({ item: { title, imageURI } }) => (
+          <HotNewsItem
+            title={title}
+            imageURI={imageURI}
+            height={80}
+            width={100}
+            resizeMode="contain"
+          />
+        )}
+        keyExtractor={(item) => item.title}
+        ItemSeparatorComponent={Divider}
+      />
+    </ScrollView>
   </BlankCard>
 );
 

@@ -1,6 +1,7 @@
 // libs
 import React from "react";
-import { View } from "react-native";
+import { ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 // components
 import HotNews from "./mains/HotNews";
 import LastestNews from "./mains/LastestNews";
@@ -8,10 +9,12 @@ import LastestNews from "./mains/LastestNews";
 import styles from "./styles";
 
 const NewsScreen = () => (
-  <View style={styles.newsScreenWrapper}>
-    <LastestNews titleList="Lastest News" />
-    <HotNews titleList="Hot News" />
-  </View>
+  <SafeAreaView style={styles.newsScreenWrapper}>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <LastestNews titleList="Lastest News" />
+      <HotNews titleList="Hot News" />
+    </ScrollView>
+  </SafeAreaView>
 );
 
 export default NewsScreen;

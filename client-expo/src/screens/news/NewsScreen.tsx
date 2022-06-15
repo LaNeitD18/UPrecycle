@@ -9,8 +9,8 @@ import styles from "./styles";
 
 const NewsScreen = () => (
   <View style={styles.newsScreenWrapper}>
-    <LastestNews title="Lastest News" />
-    <HotNews title="Hot News" />
+    <LastestNews titleList="Lastest News" />
+    <HotNews titleList="Hot News" />
   </View>
 );
 

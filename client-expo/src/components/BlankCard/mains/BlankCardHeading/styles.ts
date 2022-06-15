@@ -1,5 +1,7 @@
 // libs
 import { StyleSheet } from "react-native";
+//
+import { colors } from "../../../../constants/index";
 
 const styles = StyleSheet.create({
   blankCardHeadingWrapper: {
@@ -9,9 +11,9 @@ const styles = StyleSheet.create({
   },
   headingTitle: {
     marginLeft: 10,
-    fontSize: 17,
+    fontSize: 20,
     fontWeight: "bold",
-    color: "#000000BF"
+    color: colors.primary
   }
 });
 

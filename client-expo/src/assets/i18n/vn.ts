@@ -34,7 +34,11 @@ const UPrecycleText = {
   SIGN_OUT: "Đăng xuất",
 
   // HOME NAVIGATOR SCREENS
-  EVENT_DETAIL: "Chi tiết sự kiện"
+  EVENT_DETAIL: "Chi tiết sự kiện",
+  LIST_EVENTS: "Danh sách sự kiện",
+  EVENT: "Sự kiện",
+  AIR_QUALITY: "Chất lượng không khí",
+  TEMPERATURE: "Nhiệt độ"
 };
 
 export default UPrecycleText;

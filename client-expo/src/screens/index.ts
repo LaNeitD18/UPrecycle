@@ -5,6 +5,7 @@ import NewsScreen from "./news/NewsScreen";
 import SettingsScreen from "./settings/SettingsScreen";
 import TempScreen from "./home/TempScreen";
 import EventDetailScreen from "./events/EventDetailScreen";
+import ListEventsScreen from "./events/ListEventsScreen";
 
 export {
   SignInScreen,
@@ -13,5 +14,6 @@ export {
   NewsScreen,
   SettingsScreen,
   TempScreen,
-  EventDetailScreen
+  EventDetailScreen,
+  ListEventsScreen
 };

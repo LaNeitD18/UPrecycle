@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import UPrecycleText from "../assets/i18n/vn";
+import { colors } from "../constants";
 
-import { EventDetailScreen, HomeScreen } from "../screens";
+import { EventDetailScreen, HomeScreen, ListEventsScreen } from "../screens";
 
 export type HomeStackParams = {
   Home: undefined;
@@ -25,7 +26,17 @@ const HomeNavigator = () => (
         headerRight: () => <FontAwesomeIcon icon={faHeart} size={24} />
       }}
     />
-    <Stack.Screen name="ListEvents" component={EventDetailScreen} />
+    <Stack.Screen
+      name="ListEvents"
+      component={ListEventsScreen}
+      options={{
+        title: UPrecycleText.LIST_EVENTS,
+        headerShadowVisible: false,
+        headerStyle: {
+          backgroundColor: colors.primary
+        }
+      }}
+    />
   </Stack.Navigator>
 );
 

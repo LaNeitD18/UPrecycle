@@ -14,6 +14,7 @@
   "dependencies": {
     "@expo/metro-config": "^0.3.18",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-native-fontawesome": "^0.2.7",
     "@react-navigation/bottom-tabs": "^6.3.1",
@@ -37,6 +38,7 @@
     "react-native-svg": "^12.3.0",
     "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.7",
+    "react-native-webview": "^11.22.2",
     "react-redux": "^8.0.2",
     "redux-thunk": "^2.4.1",
     "rxjs": "^7.5.5"
@@ -70,10 +72,24 @@
     "react-test-renderer": "17.0.2",
     "typescript": "^4.7.3"
   },
+  "resolutions": {
+    "@types/react": "^17"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "jest": {
+    "preset": "react-native",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx,scss,md,json}": [

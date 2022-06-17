@@ -1,10 +1,20 @@
+// libs
 import React from "react";
-import { View, Text } from "react-native";
+import { ScrollView } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+// components
+import HotNews from "./mains/HotNews";
+import LastestNews from "./mains/LastestNews";
+// others
+import styles from "./styles";
 
 const NewsScreen = () => (
-  <View>
-    <Text>News screen</Text>
-  </View>
+  <SafeAreaView style={styles.newsScreenWrapper}>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <LastestNews titleList="Lastest News" />
+      <HotNews titleList="Hot News" />
+    </ScrollView>
+  </SafeAreaView>
 );
 
 export default NewsScreen;

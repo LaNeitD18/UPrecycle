@@ -3,9 +3,11 @@ import mongoose from 'mongoose'
 import dotenv from "dotenv";
 import cors from 'cors';
 import { 
+  campaignRoute,
   trashClassificationRoute, 
   userRoute } 
 from "./routes";
+import { handleGlobalException } from "./middleware/handleGlobalException.middleware";
 
 dotenv.config();
 
@@ -23,8 +25,11 @@ mongoose.connect(DB_URI, {
     console.log('Mongodb connected.');
   })
 
+app.use(handleGlobalException);
+
 app.use("/user", userRoute);
 app.use("/trash-classification", trashClassificationRoute);
+app.use("/campaign", campaignRoute)
 
 const port = process.env.PORT || 5000;
 

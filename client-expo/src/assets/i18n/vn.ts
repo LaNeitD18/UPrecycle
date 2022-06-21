@@ -1,4 +1,5 @@
 const UPrecycleText = {
+  APP_NAME: "UPrecycle",
   NOTIFICATION: "Thông báo",
 
   // API CONNECTION ERROR

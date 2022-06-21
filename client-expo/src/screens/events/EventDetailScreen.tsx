@@ -16,7 +16,7 @@ const EventDetailScreen: React.FC = () => {
   return (
     <View style={styles.eventDetailScreenContainer}>
       <WebView
-        source={{ uri: item?.uri }}
+        source={{ uri: item?.contentUrl }}
         onLoadStart={() => setIsLoading(true)}
         onLoad={() => setIsLoading(false)}
       />

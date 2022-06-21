@@ -10,12 +10,14 @@ import { getAuth } from "firebase/auth";
 import React, { useEffect } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import moment from "moment";
+
 import UPrecycleText from "../../assets/i18n/vn";
 import { CardInfoRow, ListCards } from "../../components";
-
 import { colors, sizes } from "../../constants";
-import { useAppDispatch } from "../../hooks/reduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { MainScreensProp } from "../../navigation/MainNavigator";
+import { fetchListCampaigns } from "../../redux/reducers/campaignSlice";
 import { fetchUser } from "../../redux/reducers/userSlice";
 import HomeHeader from "./components/HomeHeader";
 import WeatherInfo from "./components/WeatherInfo";
@@ -28,6 +30,8 @@ const HomeScreen: React.FC = () => {
 
   const uid = auth.currentUser?.uid || "";
 
+  const campaigns = useAppSelector((state) => state.campaigns);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -35,36 +39,43 @@ const HomeScreen: React.FC = () => {
   const fetchData = async () => {
     try {
       dispatch(fetchUser(uid));
+      dispatch(fetchListCampaigns());
     } catch (error) {
       console.log("err", error);
     }
   };
 
-  const goToDetail = (item) => navigation.navigate("HomeNavigator", {
+  const goToDetail = (item: any) => navigation.navigate("HomeNavigator", {
     screen: "EventDetail",
     params: { item }
   });
 
-  const renderEventCard = ({ item }) => (
-    <Card containerStyle={styles.cardContainer}>
-      <TouchableOpacity onPress={() => goToDetail(item)}>
-        <Image
-          style={styles.image}
-          resizeMode="cover"
-          source={{
-            uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi68WX0wTuDQYxkQ_5ajf2GoCBbqaIeqlc-g&usqp=CAU"
-          }}
-        />
-        <View style={styles.cardInfoView}>
-          <Card.Title style={styles.cardTitle}>{item.title}</Card.Title>
-          <View>
-            <CardInfoRow content={item.address} icon={faLocationDot} />
-            <CardInfoRow content={item.date} icon={faCalendarDays} />
+  const renderEventCard = ({ item }: { item: any }) => {
+    const formattedDate = moment(item.date).format("L");
+
+    return (
+      <Card containerStyle={styles.cardContainer}>
+        <TouchableOpacity onPress={() => goToDetail(item)}>
+          <Image
+            style={styles.image}
+            resizeMode="cover"
+            source={{
+              uri: item.imageUrl
+            }}
+          />
+          <View style={styles.cardInfoView}>
+            <Card.Title style={styles.cardTitle} numberOfLines={1}>
+              {item.title}
+            </Card.Title>
+            <View>
+              <CardInfoRow content={item.address} icon={faLocationDot} />
+              <CardInfoRow content={formattedDate} icon={faCalendarDays} />
+            </View>
           </View>
-        </View>
-      </TouchableOpacity>
-    </Card>
-  );
+        </TouchableOpacity>
+      </Card>
+    );
+  };
 
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
@@ -76,6 +87,7 @@ const HomeScreen: React.FC = () => {
           <WeatherInfo title="Nhiệt độ" icon={faTemperature3} value="30°C" />
         </View>
         <ListCards
+          items={campaigns.campaigns}
           horizontal
           title={UPrecycleText.EVENT}
           renderCard={renderEventCard}
@@ -83,7 +95,12 @@ const HomeScreen: React.FC = () => {
             screen: "ListEvents"
           })}
         />
-        <ListCards horizontal title="Thông tin" renderCard={renderEventCard} />
+        <ListCards
+          items={[]}
+          horizontal
+          title="Thông tin"
+          renderCard={renderEventCard}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -107,13 +124,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 0,
     marginHorizontal: 8,
+    marginBottom: 8,
     width: sizes.width * 0.75,
     height: sizes.height * 0.25,
     shadowOpacity: 0.2,
-    shadowOffset: {
-      width: 2,
-      height: 4
-    },
     elevation: 4
   },
   cardInfoView: {

@@ -34,6 +34,8 @@ export const createCampaign: RequestHandler<{}, {}, CampaignModel> = async funct
     return res.status(HttpStatus.BAD_REQUEST).json("The field 'title' is required.");
   if (!reqCampaign?.date)
     return res.status(HttpStatus.BAD_REQUEST).json("The field 'date' is required.");
+  if (!reqCampaign?.contentUrl)
+    return res.status(HttpStatus.BAD_REQUEST).json("The field 'contentUrl' is required.");
 
   const campaign = await Campaign.create(reqCampaign);
   return res.status(HttpStatus.CREATED).json(campaign); 

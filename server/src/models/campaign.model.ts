@@ -6,7 +6,8 @@ export interface CampaignModel {
   address?: string,
   description?: string,
   date: Date,
-  uri?: string,
+  contentUrl?: string,
+  imageUrl?: string
 }
 
 const campaignSchema = new mongoose.Schema<CampaignModel>(
@@ -15,7 +16,8 @@ const campaignSchema = new mongoose.Schema<CampaignModel>(
     address: { type: String, required: false, },
     description: { type: String, required: false, },
     date: { type: Date, required: true, },
-    uri: { type: String, required: false, }
+    contentUrl: { type: String, required: true, },
+    imageUrl: { type: String, required: false, }
   },
   { 
     timestamps: true, 

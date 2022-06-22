@@ -4,9 +4,9 @@ import HomeScreen from "./home/HomeScreen";
 import NewsScreen from "./news/NewsScreen";
 import SettingsScreen from "./settings/SettingsScreen";
 import TempScreen from "./home/TempScreen";
-import EventDetailScreen from "./events/EventDetailScreen";
-import ListEventsScreen from "./events/ListEventsScreen";
 import LoadingScreen from "./authentication/LoadingScreen";
+import ListCampaignsScreen from "./home/campaigns/ListCampaignsScreen";
+import CampaignDetailScreen from "./home/campaigns/CampaignDetailScreen";
 
 export {
   SignInScreen,
@@ -15,7 +15,7 @@ export {
   NewsScreen,
   SettingsScreen,
   TempScreen,
-  EventDetailScreen,
-  ListEventsScreen,
-  LoadingScreen
+  LoadingScreen,
+  ListCampaignsScreen,
+  CampaignDetailScreen
 };

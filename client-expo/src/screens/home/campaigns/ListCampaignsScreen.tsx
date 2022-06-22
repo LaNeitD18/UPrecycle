@@ -13,23 +13,23 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-import { CardInfoRow, ListCards } from "../../components";
-import { colors, sizes } from "../../constants";
-import { useAppSelector } from "../../hooks/reduxHooks";
-import { MainScreensProp } from "../../navigation/MainNavigator";
+import { CardInfoRow, ListCards } from "../../../components";
+import { colors, sizes } from "../../../constants";
+import { useAppSelector } from "../../../hooks/reduxHooks";
+import { MainScreensProp } from "../../../navigation/MainNavigator";
 
-const ListEventsScreen: React.FC = () => {
+const ListCampaignsScreen: React.FC = () => {
   const navigation = useNavigation<MainScreensProp>();
 
   const platform = Platform.OS === "android" ? "android" : "ios";
   const campaigns = useAppSelector((state) => state.campaigns);
 
   const goToDetail = (item: any) => navigation.navigate("HomeNavigator", {
-    screen: "EventDetail",
+    screen: "CampaignDetail",
     params: { item }
   });
 
-  const renderEventCard = ({ item }: { item: any }) => {
+  const renderCampaignCard = ({ item }: { item: any }) => {
     const formattedDate = moment(item?.date).format("L");
 
     return (
@@ -37,9 +37,9 @@ const ListEventsScreen: React.FC = () => {
         style={styles.verticalImageCardContainer}
         onPress={() => goToDetail(item)}
       >
-        <Image source={{ uri: item.imageUrl }} style={styles.eventImage} />
+        <Image source={{ uri: item.imageUrl }} style={styles.campaignImage} />
         <View style={styles.contentView}>
-          <Text style={styles.eventTitle} numberOfLines={2}>
+          <Text style={styles.campaignTitle} numberOfLines={2}>
             {item.title}
           </Text>
           <CardInfoRow content={item.address} icon={faLocationDot} />
@@ -50,21 +50,24 @@ const ListEventsScreen: React.FC = () => {
   };
 
   return (
-    <View style={styles.listEventsContainer}>
+    <View style={styles.listCampaignsContainer}>
       <View style={styles.searchBarView}>
         <SearchBar platform={platform} containerStyle={styles.searchBar} />
       </View>
-      <View style={styles.listEventsView}>
-        <ListCards items={campaigns.campaigns} renderCard={renderEventCard} />
+      <View style={styles.listCampaignsView}>
+        <ListCards
+          items={campaigns.campaigns}
+          renderCard={renderCampaignCard}
+        />
       </View>
     </View>
   );
 };
 
-export default ListEventsScreen;
+export default ListCampaignsScreen;
 
 const styles = StyleSheet.create({
-  listEventsContainer: {
+  listCampaignsContainer: {
     flex: 1,
     backgroundColor: colors.white
   },
@@ -85,7 +88,7 @@ const styles = StyleSheet.create({
     elevation: 4,
     borderRadius: 16
   },
-  listEventsView: {
+  listCampaignsView: {
     flex: 1,
     paddingHorizontal: 8
   },
@@ -102,7 +105,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     margin: 8
   },
-  eventImage: {
+  campaignImage: {
     width: sizes.width * 0.25,
     borderRadius: 16
   },
@@ -112,12 +115,9 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     flexShrink: 1
   },
-  eventTitle: {
+  campaignTitle: {
     flex: 1,
     fontSize: sizes.h3,
     fontWeight: "600"
-  },
-  eventInfo: {
-    marginBottom: 4
   }
 });

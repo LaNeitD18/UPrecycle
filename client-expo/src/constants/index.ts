@@ -62,6 +62,6 @@ export const colors = {
 };
 
 export const APIConfigs = {
-  BASE_URL: "http://10.0.160.124:5000",
+  BASE_URL: "http://10.0.154.75:5000",
   TIMEOUT_DURATION: 10000
 };

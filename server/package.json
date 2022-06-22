@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/mongodb": "^4.0.7",
     "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
     "clarifai-nodejs-grpc": "^8.0.0",
     "config": "^3.3.7",
     "cors": "^2.8.5",

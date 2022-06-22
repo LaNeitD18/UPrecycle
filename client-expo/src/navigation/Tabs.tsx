@@ -21,11 +21,12 @@ import UPrecycleText from "../assets/i18n/vn";
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => (
-  <Tab.Navigator initialRouteName="Home" screenOptions={{ headerShown: true }}>
+  <Tab.Navigator initialRouteName="Home">
     <Tab.Screen
       name="Home"
       component={HomeScreen}
       options={{
+        headerShown: false,
         tabBarIcon: ({ focused }) => (
           <FontAwesomeIcon
             icon={faHome}

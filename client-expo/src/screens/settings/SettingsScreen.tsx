@@ -13,10 +13,9 @@ import { colors, sizes } from "../../constants";
 import SettingRow from "./components/SettingRow";
 import UPrecycleText from "../../assets/i18n/vn";
 import { useAppSelector } from "../../hooks/reduxHooks";
+import { userImage } from "../../assets/images";
 
-const userImage = require("../../assets/images/user.png");
-
-const SettingsScreen = () => {
+const SettingsScreen: React.FC = () => {
   const auth = getAuth();
   const user = useAppSelector((state) => state.user);
 

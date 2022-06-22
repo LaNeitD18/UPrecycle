@@ -30,6 +30,7 @@ export const colors = {
   // base colors
   primary: "#19a07b",
   secondary: "#f6ae2d",
+  lightPrimary: "#65BB7C",
 
   // colors
   black: "#1E1F20",
@@ -47,6 +48,7 @@ export const colors = {
   darkRed: "#cf3a32",
   darkBlue: "#007498",
   darkGrass: "#5baa5b",
+  lightCyan: "#bae1f7",
 
   white98: "rgba(255, 255, 255, 0.98)",
   white80: "rgba(255, 255, 255, 0.8)",

@@ -7,27 +7,14 @@ import AuthenticationNavigator from "./src/navigation/AuthenticationNavigator";
 import MainNavigator from "./src/navigation/MainNavigator";
 import store from "./src/redux/store";
 import { firebaseApp } from "./src/api/firebase";
+import { LoadingScreen } from "./src/screens";
 
 const auth = getAuth(firebaseApp);
 
 const App = () => {
-  // // Set an initializing state whilst Firebase connects
-  // const [initializing, setInitializing] = useState(true);
-  // const [user, setUser] = useState();
+  const [user, loading] = useAuthState(auth);
 
-  // // Handle user state changes
-  // // eslint-disable-next-line no-shadow
-  // function onAuthStateChanged(user: any) {
-  //   setUser(user);
-  //   if (initializing) setInitializing(false);
-  // }
-
-  // useEffect(() => {
-  //   const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-  //   return subscriber; // unsubscribe on unmount
-  // }, []);
-
-  const [user] = useAuthState(auth);
+  if (loading) return <LoadingScreen />;
 
   if (user) {
     return (

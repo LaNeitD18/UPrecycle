@@ -4,6 +4,7 @@ import { Image } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 import { colors } from "../../constants";
 import { AuthStackParams } from "../../navigation/AuthenticationNavigator";
@@ -77,11 +78,13 @@ const SignInScreen = () => {
         <CustomInput
           label={UPrecycleText.EMAIL}
           placeholder={UPrecycleText.INPUT_EMAIL}
+          icon={faEnvelope}
           onChangeText={setEmail}
         />
         <CustomInput
           label={UPrecycleText.PASSWORD}
           placeholder={UPrecycleText.INPUT_PASSWORD}
+          icon={faLock}
           security
           onChangeText={setPassword}
         />

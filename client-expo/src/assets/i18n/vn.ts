@@ -33,6 +33,7 @@ const UPrecycleText = {
   USER_INFO: "Thông tin người dùng",
   CHANGE_PASSWORD: "Thay đổi mật khẩu",
   SIGN_OUT: "Đăng xuất",
+  APPROVE: "Xác nhận",
 
   // HOME NAVIGATOR SCREENS
   CAMPAIGN_DETAIL: "Chi tiết sự kiện",

@@ -7,6 +7,7 @@ import TempScreen from "./home/TempScreen";
 import LoadingScreen from "./authentication/LoadingScreen";
 import ListCampaignsScreen from "./home/campaigns/ListCampaignsScreen";
 import CampaignDetailScreen from "./home/campaigns/CampaignDetailScreen";
+import UserScreen from "./settings/UserScreen";
 
 export {
   SignInScreen,
@@ -17,5 +18,6 @@ export {
   TempScreen,
   LoadingScreen,
   ListCampaignsScreen,
-  CampaignDetailScreen
+  CampaignDetailScreen,
+  UserScreen
 };

@@ -7,21 +7,27 @@ import {
   TouchableOpacity
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faUser, faLock, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faEyeSlash, IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
 import { colors } from "../constants";
 
 type Props = {
   label: string;
-  placeholder: string;
+  placeholder?: string;
+  text?: string;
+  editable?: boolean;
   security?: boolean;
+  icon: IconDefinition;
   // eslint-disable-next-line no-unused-vars
   onChangeText?: (text: string) => void;
 };
 
 const CustomInput: React.FC<Props> = ({
   label,
-  placeholder,
+  placeholder = "",
+  text = "",
+  icon,
+  editable = true,
   security = false,
   onChangeText
 }) => {
@@ -31,14 +37,12 @@ const CustomInput: React.FC<Props> = ({
     <View style={styles.container}>
       <Text style={styles.labelText}>{label}</Text>
       <View style={styles.inputRow}>
-        <FontAwesomeIcon
-          icon={security ? faLock : faUser}
-          size={20}
-          style={styles.icon}
-        />
+        <FontAwesomeIcon icon={icon} size={20} style={styles.icon} />
         <TextInput
+          defaultValue={text}
+          editable={editable}
           placeholder={placeholder}
-          style={styles.input}
+          style={[styles.input, { color: editable ? undefined : "gray" }]}
           secureTextEntry={hidePassword}
           onChangeText={onChangeText}
         />

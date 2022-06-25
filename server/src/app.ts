@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import cors from 'cors';
 import { 
   campaignRoute,
+  newsRoute,
   trashClassificationRoute, 
   userRoute } 
 from "./routes";
@@ -33,6 +34,7 @@ app.use(handleGlobalException);
 app.use("/user", userRoute);
 app.use("/trash-classification", trashClassificationRoute);
 app.use("/campaign", campaignRoute)
+app.use("/news", newsRoute)
 
 const port = process.env.PORT || 5000;
 

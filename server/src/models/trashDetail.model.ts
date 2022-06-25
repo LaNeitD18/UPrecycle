@@ -10,7 +10,7 @@ export enum TrashClassification {
 
 export interface TrashDetailModel {
   id: string, // mongoose
-  name: string, // clarifai
+  materials: string[], // clarifai
   imgUrl?: string,
   description?: string,
   classification: TrashClassification;
@@ -19,7 +19,7 @@ export interface TrashDetailModel {
 
 const trashDetailSchema = new mongoose.Schema<TrashDetailModel>(
   {
-    name: { type: String, required: true },
+    materials: { type: [String], required: true },
     imgUrl: { type: String, required: false },
     description: { type: String, required: false },
     classification: { 

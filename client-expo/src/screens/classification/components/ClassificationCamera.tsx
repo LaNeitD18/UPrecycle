@@ -5,7 +5,9 @@ import {
   View,
   TouchableOpacity,
   PixelRatio,
-  Image
+  Image,
+  Modal,
+  Dimensions
 } from "react-native";
 import { Camera, CameraType } from "expo-camera";
 import ViewShot, { captureRef } from "react-native-view-shot";
@@ -27,6 +29,7 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
   turnOffCamera
 }) => {
   // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(CameraType.back);
   const ref = useRef(null);
@@ -35,6 +38,7 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
   // pixels * pixelratio = targetPixelCount, so pixels = targetPixelCount / pixelRatio
   const pixels = targetPixelCount / pixelRatio;
   // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [counter, start, pause, reset, isRunning] = useClock(0, 2000, false);
   const [predictionObj, setPredictionObj] = useState();
 
@@ -51,7 +55,8 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
         const predictionResults: PredictionResult[] = res.data?.predictionResult;
         setPredictionObj(predictionResults[0]);
       })
-      .catch(() => {
+      .catch((err: any) => {
+        console.log(err);
         setPredictionObj(undefined);
       });
   };
@@ -189,20 +194,24 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
   );
 
   return (
-    <ViewShot ref={ref} style={styles.container}>
-      <Camera style={styles.camera} type={type} />
-      <ControlCameraCard />
-      <ClassificationTitleCard />
-    </ViewShot>
+    <Modal animationType="slide" transparent style={styles.container}>
+      <ViewShot ref={ref} style={styles.container}>
+        <Camera style={styles.camera} type={type} ratio="16:9" />
+        <ControlCameraCard />
+        <ClassificationTitleCard />
+      </ViewShot>
+    </Modal>
   );
 };
+const windowWidth = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
   camera: {
-    flex: 1
+    width: windowWidth,
+    height: (windowWidth * 16) / 9
   },
   buttonContainer: {
     flex: 1,
@@ -236,7 +245,10 @@ const styles = StyleSheet.create({
     borderColor: "white",
     justifyContent: "center",
     alignItems: "center",
-    padding: 8
+    padding: 8,
+    shadowOpacity: 0.2,
+    elevation: 4,
+    shadowColor: "whitesmoke"
   },
   classificationCard: {
     width: "90%",

@@ -27,7 +27,8 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
   turnOffCamera
 }) => {
   // eslint-disable-next-line no-unused-vars
-  const [hasPermission, setHasPermission] = useState(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [hasPermission, setHasPermission] = useState(false);
   const [type, setType] = useState(CameraType.back);
   const ref = useRef(null);
   const targetPixelCount = 240; // If you want full HD pictures
@@ -35,8 +36,9 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
   // pixels * pixelratio = targetPixelCount, so pixels = targetPixelCount / pixelRatio
   const pixels = targetPixelCount / pixelRatio;
   // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [counter, start, pause, reset, isRunning] = useClock(0, 2000, false);
-  const [predictionObj, setPredictionObj] = useState();
+  const [predictionObj, setPredictionObj] = useState<PredictionResult>();
 
   useEffect(() => {
     (async () => {
@@ -68,9 +70,9 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
       quality: 0.5,
       format: "png"
     }).then(
-      (uri) => detectFrame(uri),
+      (uri: string) => detectFrame(uri),
       // eslint-disable-next-line no-console
-      (error) => console.error("Oops, snapshot failed", error)
+      (error: any) => console.error("Oops, snapshot failed", error)
     );
   };
 

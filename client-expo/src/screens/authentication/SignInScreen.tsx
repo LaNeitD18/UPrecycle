@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
+import { Image } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 import { colors } from "../../constants";
 import { AuthStackParams } from "../../navigation/AuthenticationNavigator";
 import { CustomButton, CustomInput } from "../../components";
 import UPrecycleText from "../../assets/i18n/vn";
 import { firebaseApp } from "../../api/firebase";
+import { logo } from "../../assets/images";
 
 type AuthScreenProp = NativeStackNavigationProp<AuthStackParams>;
 
@@ -69,17 +72,19 @@ const SignInScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text>Header</Text>
+        <Image source={logo} style={styles.logo} resizeMode="contain" />
       </View>
       <View style={styles.footer}>
         <CustomInput
           label={UPrecycleText.EMAIL}
           placeholder={UPrecycleText.INPUT_EMAIL}
+          icon={faEnvelope}
           onChangeText={setEmail}
         />
         <CustomInput
           label={UPrecycleText.PASSWORD}
           placeholder={UPrecycleText.INPUT_PASSWORD}
+          icon={faLock}
           security
           onChangeText={setPassword}
         />
@@ -116,5 +121,9 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 32,
     borderTopRightRadius: 32,
     padding: 32
+  },
+  logo: {
+    width: 100,
+    height: 100
   }
 });

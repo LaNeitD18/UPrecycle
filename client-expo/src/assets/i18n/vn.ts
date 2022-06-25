@@ -33,11 +33,12 @@ const UPrecycleText = {
   USER_INFO: "Thông tin người dùng",
   CHANGE_PASSWORD: "Thay đổi mật khẩu",
   SIGN_OUT: "Đăng xuất",
+  APPROVE: "Xác nhận",
 
   // HOME NAVIGATOR SCREENS
-  EVENT_DETAIL: "Chi tiết sự kiện",
-  LIST_EVENTS: "Danh sách sự kiện",
-  EVENT: "Sự kiện",
+  CAMPAIGN_DETAIL: "Chi tiết sự kiện",
+  LIST_CAMPAIGNS: "Danh sách sự kiện",
+  CAMPAIGN: "Sự kiện",
   AIR_QUALITY: "Chất lượng không khí",
   TEMPERATURE: "Nhiệt độ"
 };

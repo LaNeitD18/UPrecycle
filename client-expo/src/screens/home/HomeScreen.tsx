@@ -46,11 +46,11 @@ const HomeScreen: React.FC = () => {
   };
 
   const goToDetail = (item: any) => navigation.navigate("HomeNavigator", {
-    screen: "EventDetail",
+    screen: "CampaignDetail",
     params: { item }
   });
 
-  const renderEventCard = ({ item }: { item: any }) => {
+  const renderCampaignCard = ({ item }: { item: any }) => {
     const formattedDate = moment(item.date).format("L");
 
     return (
@@ -82,24 +82,32 @@ const HomeScreen: React.FC = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <HomeHeader />
         <View style={styles.weatherRow}>
-          <WeatherInfo title="Chất lượng không khí" icon={faWind} value="40*" />
+          <WeatherInfo
+            title={UPrecycleText.AIR_QUALITY}
+            icon={faWind}
+            value="40*"
+          />
           <Divider width={12} orientation="vertical" color={colors.white} />
-          <WeatherInfo title="Nhiệt độ" icon={faTemperature3} value="30°C" />
+          <WeatherInfo
+            title={UPrecycleText.TEMPERATURE}
+            icon={faTemperature3}
+            value="30°C"
+          />
         </View>
         <ListCards
           items={campaigns.campaigns}
           horizontal
-          title={UPrecycleText.EVENT}
-          renderCard={renderEventCard}
+          title={UPrecycleText.CAMPAIGN}
+          renderCard={renderCampaignCard}
           goToList={() => navigation.navigate("HomeNavigator", {
-            screen: "ListEvents"
+            screen: "ListCampaigns"
           })}
         />
         <ListCards
           items={[]}
           horizontal
           title="Thông tin"
-          renderCard={renderEventCard}
+          renderCard={renderCampaignCard}
         />
       </ScrollView>
     </SafeAreaView>

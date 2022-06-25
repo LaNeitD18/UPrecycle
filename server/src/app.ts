@@ -8,8 +8,11 @@ import {
   userRoute } 
 from "./routes";
 import { handleGlobalException } from "./middleware/handleGlobalException.middleware";
+import { initPredictionRandomizer } from "./services/classification.service";
 
 dotenv.config();
+
+initPredictionRandomizer(60000);
 
 const DB_URI: string = process.env.MONGODB_URI || "";
 

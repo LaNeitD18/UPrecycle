@@ -4,12 +4,16 @@ import dotenv from "dotenv";
 import cors from 'cors';
 import { 
   campaignRoute,
+  newsRoute,
   trashClassificationRoute, 
   userRoute } 
 from "./routes";
 import { handleGlobalException } from "./middleware/handleGlobalException.middleware";
+import { initPredictionRandomizer } from "./services/classification.service";
 
 dotenv.config();
+
+initPredictionRandomizer(60000);
 
 const DB_URI: string = process.env.MONGODB_URI || "";
 
@@ -30,6 +34,7 @@ app.use(handleGlobalException);
 app.use("/user", userRoute);
 app.use("/trash-classification", trashClassificationRoute);
 app.use("/campaign", campaignRoute)
+app.use("/news", newsRoute)
 
 const port = process.env.PORT || 5000;
 

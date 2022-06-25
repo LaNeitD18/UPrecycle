@@ -4,23 +4,24 @@ export enum TrashClassification {
   Recyclable = "Recyclable",
   NonRecyclable = "Non-recyclable",
   Organic = "Organic",
+  Others = "Others",
   Unknown = "Unknown"
 }
 
 export interface TrashDetailModel {
-  id: string,
-  name: string,
-  imgUrl: string,
-  description: string,
+  id: string, // mongoose
+  materials: string[], // clarifai
+  imgUrl?: string,
+  description?: string,
   classification: TrashClassification;
-  popularity: number,
+  popularity?: number,
 }
 
 const trashDetailSchema = new mongoose.Schema<TrashDetailModel>(
   {
-    name: { type: String, required: true },
+    materials: { type: [String], required: true },
     imgUrl: { type: String, required: false },
-    description: { type: String, required: true },
+    description: { type: String, required: false },
     classification: { 
       type: String, 
       enum: TrashClassification, 

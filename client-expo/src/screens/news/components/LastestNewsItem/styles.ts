@@ -9,11 +9,13 @@ const styles = StyleSheet.create({
   titleNews: {
     marginTop: 5,
     fontSize: 18,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    paddingRight: 40
   },
   descriptionNews: {
     fontSize: 14,
-    color: "gray"
+    color: "gray",
+    paddingRight: 40
   }
 });
 

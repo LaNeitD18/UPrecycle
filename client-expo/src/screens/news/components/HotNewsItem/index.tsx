@@ -4,25 +4,16 @@ import { View, Image, Text } from "react-native";
 import styles from "./styles";
 
 interface ILastestNewsItemProps {
-  resizeMode?: "center" | "contain" | "cover" | "stretch" | "repeat";
-  width?: string | number;
-  height?: string | number;
   imageURI: string;
   title: string;
 }
 
-const HotNewsItem = ({
-  resizeMode,
-  width,
-  height,
-  imageURI,
-  title
-}: ILastestNewsItemProps) => (
+const HotNewsItem = ({ imageURI, title }: ILastestNewsItemProps) => (
   <View style={styles.hotNewsItemWrapper}>
     <View>
       <Image
-        resizeMode={resizeMode}
-        style={{ width, height }}
+        resizeMode="contain"
+        style={{ width: 100, height: 80 }}
         source={{ uri: imageURI }}
         borderRadius={10}
       />

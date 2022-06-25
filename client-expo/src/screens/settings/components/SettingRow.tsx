@@ -50,8 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   divider: {
-    paddingLeft: 45,
-    marginTop: 8
+    paddingLeft: 45
   },
   text: {
     fontWeight: "600",

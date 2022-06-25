@@ -13,7 +13,7 @@ interface ILastestNewsProps {
 }
 
 const LastestNews = ({ titleList }: ILastestNewsProps) => (
-  <BlankCard headingTitle={titleList}>
+  <BlankCard headingTitle={titleList} cardStyle={{ flex: 1 }}>
     <FlatList
       showsHorizontalScrollIndicator={false}
       horizontal
@@ -23,8 +23,6 @@ const LastestNews = ({ titleList }: ILastestNewsProps) => (
         <LastestNewsItem
           title={title}
           imageURI={imageURI}
-          height={200}
-          width={300}
           resizeMode="contain"
         />
       )}

@@ -25,13 +25,7 @@ const HotNews = ({ titleList }: TitleProps) => (
         showsVerticalScrollIndicator={false}
         data={lastestNewsMock}
         renderItem={({ item: { title, imageURI } }) => (
-          <HotNewsItem
-            title={title}
-            imageURI={imageURI}
-            height={80}
-            width={100}
-            resizeMode="contain"
-          />
+          <HotNewsItem title={title} imageURI={imageURI} />
         )}
         keyExtractor={(item) => item.title}
         ItemSeparatorComponent={Divider}

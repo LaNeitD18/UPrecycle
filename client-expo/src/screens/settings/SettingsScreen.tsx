@@ -71,7 +71,9 @@ const SettingsScreen: React.FC = () => {
           <SettingRow
             icon={faKey}
             text={UPrecycleText.CHANGE_PASSWORD}
-            onPress={() => {}}
+            onPress={() => navigation.navigate("SettingsNavigator", {
+              screen: "EditPassword"
+            })}
           />
           <SettingRow
             icon={faBell}

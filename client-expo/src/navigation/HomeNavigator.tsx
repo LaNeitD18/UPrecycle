@@ -8,13 +8,15 @@ import { colors } from "../constants";
 import {
   CampaignDetailScreen,
   HomeScreen,
-  ListCampaignsScreen
+  ListCampaignsScreen,
+  TrashTypeDetailScreen
 } from "../screens";
 
 export type HomeStackParams = {
   Home: undefined;
   CampaignDetail: { item: any };
   ListCampaigns: undefined;
+  TrashTypeDetail: { item: any };
 };
 
 const Stack = createNativeStackNavigator();
@@ -35,6 +37,18 @@ const HomeNavigator = () => (
       component={ListCampaignsScreen}
       options={{
         title: UPrecycleText.LIST_CAMPAIGNS,
+        headerShadowVisible: false,
+        headerStyle: {
+          backgroundColor: colors.primary
+        }
+      }}
+    />
+    <Stack.Screen
+      name="TrashTypeDetail"
+      component={TrashTypeDetailScreen}
+      options={{
+        title: UPrecycleText.TRASH_TYPE_DETAIL,
+        headerTintColor: colors.white,
         headerShadowVisible: false,
         headerStyle: {
           backgroundColor: colors.primary

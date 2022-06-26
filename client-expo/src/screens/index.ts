@@ -9,6 +9,7 @@ import LoadingScreen from "./authentication/LoadingScreen";
 import ListCampaignsScreen from "./home/campaigns/ListCampaignsScreen";
 import CampaignDetailScreen from "./home/campaigns/CampaignDetailScreen";
 import UserScreen from "./settings/UserScreen";
+import TrashTypeDetailScreen from "./home/trash/TrashTypeDetailScreen";
 
 export {
   SignInScreen,
@@ -21,5 +22,6 @@ export {
   LoadingScreen,
   ListCampaignsScreen,
   CampaignDetailScreen,
-  UserScreen
+  UserScreen,
+  TrashTypeDetailScreen
 };

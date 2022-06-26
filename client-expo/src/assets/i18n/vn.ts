@@ -22,6 +22,7 @@ const UPrecycleText = {
   INPUT_ACCOUNT_NAME: "Nhập tên tài khoản",
   SIGN_IN: "Đăng nhập",
   SIGN_UP: "Đăng ký",
+  RETYPE_PASSWORD: "Nhập lại mật khẩu",
 
   // TAB BAR
   HOME_SCREEN: "Trang chủ",
@@ -34,6 +35,7 @@ const UPrecycleText = {
   CHANGE_PASSWORD: "Thay đổi mật khẩu",
   SIGN_OUT: "Đăng xuất",
   APPROVE: "Xác nhận",
+  EDIT_PASSWORD: "Thay đổi mật khẩu",
 
   // HOME NAVIGATOR SCREENS
   CAMPAIGN_DETAIL: "Chi tiết sự kiện",

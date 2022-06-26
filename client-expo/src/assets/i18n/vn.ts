@@ -40,7 +40,8 @@ const UPrecycleText = {
   LIST_CAMPAIGNS: "Danh sách sự kiện",
   CAMPAIGN: "Sự kiện",
   AIR_QUALITY: "Chất lượng không khí",
-  TEMPERATURE: "Nhiệt độ"
+  TEMPERATURE: "Nhiệt độ",
+  TRASH_TYPE_DETAIL: "Thông tin phân loại rác"
 };
 
 export default UPrecycleText;

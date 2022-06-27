@@ -13,20 +13,14 @@ interface ILastestNewsProps {
 }
 
 const LastestNews = ({ titleList }: ILastestNewsProps) => (
-  <BlankCard headingTitle={titleList}>
+  <BlankCard headingTitle={titleList} cardStyle={{ flex: 1 }}>
     <FlatList
       showsHorizontalScrollIndicator={false}
       horizontal
       data={lastestNewsMock}
       keyExtractor={(item) => item.title}
-      renderItem={({ item: { title, imageURI } }) => (
-        <LastestNewsItem
-          title={title}
-          imageURI={imageURI}
-          height={200}
-          width={300}
-          resizeMode="contain"
-        />
+      renderItem={({ item: { title, imageURI, uri } }) => (
+        <LastestNewsItem title={title} imageURI={imageURI} uri={uri} />
       )}
       ItemSeparatorComponent={ItemSeparator}
     />

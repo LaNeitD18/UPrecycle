@@ -9,6 +9,7 @@ import {
   updateProfile,
   User
 } from "firebase/auth";
+import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 import { CustomButton, CustomInput } from "../../components";
 import { colors } from "../../constants";
@@ -111,12 +112,14 @@ const SignUpScreen = () => {
         <CustomInput
           label={UPrecycleText.EMAIL}
           placeholder={UPrecycleText.INPUT_EMAIL}
+          icon={faEnvelope}
           onChangeText={setEmailInput}
         />
 
         <CustomInput
           label={UPrecycleText.PASSWORD}
           placeholder={UPrecycleText.INPUT_PASSWORD}
+          icon={faLock}
           security
           onChangeText={setPassword}
         />

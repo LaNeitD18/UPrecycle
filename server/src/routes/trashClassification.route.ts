@@ -3,6 +3,8 @@ import * as TrashClassificationController from '../controllers/trashClassificati
 
 const router = express.Router();
 
-router.get('/', TrashClassificationController.predictTrashType);
+router.post('/', TrashClassificationController.predictTrashType);
+router.get('/details/:name', TrashClassificationController.getTrashDetailsByName);
+router.get('/details', TrashClassificationController.getAllTrashDetails);
 
 export default router;

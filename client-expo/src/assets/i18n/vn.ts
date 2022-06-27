@@ -1,4 +1,5 @@
 const UPrecycleText = {
+  APP_NAME: "UPrecycle",
   NOTIFICATION: "Thông báo",
 
   // API CONNECTION ERROR
@@ -21,6 +22,7 @@ const UPrecycleText = {
   INPUT_ACCOUNT_NAME: "Nhập tên tài khoản",
   SIGN_IN: "Đăng nhập",
   SIGN_UP: "Đăng ký",
+  RETYPE_PASSWORD: "Nhập lại mật khẩu",
 
   // TAB BAR
   HOME_SCREEN: "Trang chủ",
@@ -32,13 +34,16 @@ const UPrecycleText = {
   USER_INFO: "Thông tin người dùng",
   CHANGE_PASSWORD: "Thay đổi mật khẩu",
   SIGN_OUT: "Đăng xuất",
+  APPROVE: "Xác nhận",
+  EDIT_PASSWORD: "Thay đổi mật khẩu",
 
   // HOME NAVIGATOR SCREENS
-  EVENT_DETAIL: "Chi tiết sự kiện",
-  LIST_EVENTS: "Danh sách sự kiện",
-  EVENT: "Sự kiện",
+  CAMPAIGN_DETAIL: "Chi tiết sự kiện",
+  LIST_CAMPAIGNS: "Danh sách sự kiện",
+  CAMPAIGN: "Sự kiện",
   AIR_QUALITY: "Chất lượng không khí",
-  TEMPERATURE: "Nhiệt độ"
+  TEMPERATURE: "Nhiệt độ",
+  TRASH_TYPE_DETAIL: "Thông tin phân loại rác"
 };
 
 export default UPrecycleText;

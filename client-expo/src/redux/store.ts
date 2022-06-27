@@ -2,10 +2,12 @@ import { Action, configureStore } from "@reduxjs/toolkit";
 import { ThunkAction } from "redux-thunk";
 
 import userReducer from "./reducers/userSlice";
+import campaignsReducer from "./reducers/campaignSlice";
 
 const store = configureStore({
   reducer: {
-    user: userReducer
+    user: userReducer,
+    campaigns: campaignsReducer
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: false

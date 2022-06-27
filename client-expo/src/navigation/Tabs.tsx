@@ -10,7 +10,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { colors } from "../constants";
-import { HomeScreen, NewsScreen, SettingsScreen, TempScreen } from "../screens";
+import {
+  ClassificationScreen,
+  HomeScreen,
+  NewsScreen,
+  SettingsScreen
+} from "../screens";
 import UPrecycleText from "../assets/i18n/vn";
 
 const Tab = createBottomTabNavigator();
@@ -54,7 +59,7 @@ const Tabs = () => (
     />
     <Tab.Screen
       name="Classification"
-      component={TempScreen}
+      component={ClassificationScreen}
       options={{
         tabBarIcon: ({ focused }) => (
           <FontAwesomeIcon

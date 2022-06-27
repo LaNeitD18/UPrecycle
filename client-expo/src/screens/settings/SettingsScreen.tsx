@@ -8,16 +8,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { signOut, getAuth } from "firebase/auth";
+import { useNavigation } from "@react-navigation/native";
 
 import { colors, sizes } from "../../constants";
 import SettingRow from "./components/SettingRow";
 import UPrecycleText from "../../assets/i18n/vn";
 import { useAppSelector } from "../../hooks/reduxHooks";
-
-const userImage = require("../../assets/images/user.png");
+import { userImage } from "../../assets/images";
+import { MainScreensProp } from "../../navigation/MainNavigator";
 
 const SettingsScreen: React.FC = () => {
   const auth = getAuth();
+  const navigation = useNavigation<MainScreensProp>();
+
   const user = useAppSelector((state) => state.user);
 
   const handleSignOut = () => {
@@ -61,12 +64,16 @@ const SettingsScreen: React.FC = () => {
           <SettingRow
             icon={faUser}
             text={UPrecycleText.USER_INFO}
-            onPress={() => {}}
+            onPress={() => navigation.navigate("SettingsNavigator", {
+              screen: "User"
+            })}
           />
           <SettingRow
             icon={faKey}
             text={UPrecycleText.CHANGE_PASSWORD}
-            onPress={() => {}}
+            onPress={() => navigation.navigate("SettingsNavigator", {
+              screen: "EditPassword"
+            })}
           />
           <SettingRow
             icon={faBell}

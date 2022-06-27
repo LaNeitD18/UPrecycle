@@ -7,57 +7,13 @@ import { FlatList, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import { colors, sizes } from "../constants";
 
-const events = [
-  {
-    id: 1,
-    title: "Event 1",
-    address: "1/2 XVNT blabla",
-    date: "10/2/2022",
-    uri: "https://www.facebook.com/ACCB2030/posts/577593737120613"
-  },
-  {
-    id: 2,
-    title: "event 2",
-    address: "100/78 XVNT P21 Binh Thanh",
-    date: "22/10/2022",
-    uri: "https://www.facebook.com/ACCB2030/posts/577593737120613"
-  },
-  {
-    id: 3,
-    title: "event 3",
-    address: "100/78 XVNT P21 Binh Thanh",
-    date: "22/10/2022",
-    uri: "https://www.facebook.com/ACCB2030/posts/577593737120613"
-  },
-  {
-    id: 4,
-    title: "event 4",
-    address: "100/78 XVNT P21 Binh Thanh",
-    date: "22/10/2022",
-    uri: "https://www.facebook.com/ACCB2030/posts/577593737120613"
-  },
-  {
-    id: 5,
-    title: "event 5",
-    address: "100/78 XVNT P21 Binh Thanh",
-    date: "22/10/2022",
-    uri: "https://www.facebook.com/ACCB2030/posts/577593737120613"
-  },
-  {
-    id: 6,
-    title: "event 6",
-    address: "100/78 XVNT P21 Binh Thanh",
-    date: "22/10/2022",
-    uri: "https://www.facebook.com/ACCB2030/posts/577593737120613"
-  }
-];
-
 interface CardInfoRowProps {
   icon: IconDefinition;
   content: string;
 }
 
 interface ListCardsProps {
+  items: any[];
   title?: string;
   horizontal?: boolean;
   renderCard: (item: any) => React.ReactElement;
@@ -67,11 +23,14 @@ interface ListCardsProps {
 export const CardInfoRow: React.FC<CardInfoRowProps> = ({ icon, content }) => (
   <View style={styles.cardInfoRow}>
     <FontAwesomeIcon icon={icon} color={colors.primary} />
-    <Text style={styles.infoRowContent}>{content}</Text>
+    <Text style={styles.infoRowContent} numberOfLines={1}>
+      {content}
+    </Text>
   </View>
 );
 
 const ListCards: React.FC<ListCardsProps> = ({
+  items = [],
   title = "",
   horizontal = false,
   renderCard,
@@ -88,7 +47,7 @@ const ListCards: React.FC<ListCardsProps> = ({
     )}
     <FlatList
       horizontal={horizontal}
-      data={events}
+      data={items}
       renderItem={renderCard}
       style={styles.flatList}
       showsHorizontalScrollIndicator={false}
@@ -102,7 +61,7 @@ export default ListCards;
 
 const styles = StyleSheet.create({
   listCardsContainer: {
-    marginVertical: 16
+    marginVertical: 12
   },
   listCardsTitleRow: {
     flexDirection: "row",
@@ -122,6 +81,7 @@ const styles = StyleSheet.create({
     marginBottom: 8
   },
   infoRowContent: {
+    flex: 1,
     fontSize: sizes.base,
     marginLeft: 8
   }

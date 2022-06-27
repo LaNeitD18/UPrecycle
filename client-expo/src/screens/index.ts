@@ -4,8 +4,13 @@ import HomeScreen from "./home/HomeScreen";
 import NewsScreen from "./news/NewsScreen";
 import SettingsScreen from "./settings/SettingsScreen";
 import TempScreen from "./home/TempScreen";
-import EventDetailScreen from "./events/EventDetailScreen";
-import ListEventsScreen from "./events/ListEventsScreen";
+import ClassificationScreen from "./classification/ClassificationScreen";
+import LoadingScreen from "./authentication/LoadingScreen";
+import ListCampaignsScreen from "./home/campaigns/ListCampaignsScreen";
+import CampaignDetailScreen from "./home/campaigns/CampaignDetailScreen";
+import UserScreen from "./settings/UserScreen";
+import TrashTypeDetailScreen from "./home/trash/TrashTypeDetailScreen";
+import EditPasswordScreen from "./settings/EditPasswordScreen";
 import NewsDetailScreen from "./newsDetail";
 
 export {
@@ -14,8 +19,13 @@ export {
   HomeScreen,
   NewsScreen,
   SettingsScreen,
+  ClassificationScreen,
   TempScreen,
-  EventDetailScreen,
-  ListEventsScreen,
+  LoadingScreen,
+  ListCampaignsScreen,
+  CampaignDetailScreen,
+  UserScreen,
+  TrashTypeDetailScreen,
+  EditPasswordScreen,
   NewsDetailScreen
 };

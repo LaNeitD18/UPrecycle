@@ -3,20 +3,20 @@ import { ActivityIndicator, StyleSheet, View } from "react-native";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { WebView } from "react-native-webview";
 
-import { HomeStackParams } from "../../navigation/HomeNavigator";
-import { colors } from "../../constants";
+import { HomeStackParams } from "../../../navigation/HomeNavigator";
+import { colors } from "../../../constants";
 
-const EventDetailScreen: React.FC = () => {
-  const route = useRoute<RouteProp<HomeStackParams, "EventDetail">>();
+const CampaignDetailScreen: React.FC = () => {
+  const route = useRoute<RouteProp<HomeStackParams, "CampaignDetail">>();
 
   const { item } = route.params;
 
   const [isLoading, setIsLoading] = useState(false);
 
   return (
-    <View style={styles.eventDetailScreenContainer}>
+    <View style={styles.campaignDetailScreenContainer}>
       <WebView
-        source={{ uri: item?.uri }}
+        source={{ uri: item?.contentUrl }}
         onLoadStart={() => setIsLoading(true)}
         onLoad={() => setIsLoading(false)}
       />
@@ -31,10 +31,10 @@ const EventDetailScreen: React.FC = () => {
   );
 };
 
-export default EventDetailScreen;
+export default CampaignDetailScreen;
 
 const styles = StyleSheet.create({
-  eventDetailScreenContainer: {
+  campaignDetailScreenContainer: {
     flex: 1
   },
   loadingView: {

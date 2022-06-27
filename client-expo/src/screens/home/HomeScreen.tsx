@@ -8,7 +8,13 @@ import { useNavigation } from "@react-navigation/native";
 import { Card, Divider, Image } from "@rneui/themed";
 import { getAuth } from "firebase/auth";
 import React, { useEffect } from "react";
-import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import moment from "moment";
 
@@ -21,6 +27,7 @@ import { fetchListCampaigns } from "../../redux/reducers/campaignSlice";
 import { fetchUser } from "../../redux/reducers/userSlice";
 import HomeHeader from "./components/HomeHeader";
 import WeatherInfo from "./components/WeatherInfo";
+import { mockTrashTypes, TrashType } from "../../models/TrashType";
 
 const auth = getAuth();
 
@@ -46,15 +53,15 @@ const HomeScreen: React.FC = () => {
   };
 
   const goToDetail = (item: any) => navigation.navigate("HomeNavigator", {
-    screen: "EventDetail",
+    screen: "CampaignDetail",
     params: { item }
   });
 
-  const renderEventCard = ({ item }: { item: any }) => {
+  const renderCampaignCard = ({ item }: { item: any }) => {
     const formattedDate = moment(item.date).format("L");
 
     return (
-      <Card containerStyle={styles.cardContainer}>
+      <Card containerStyle={styles.campaignCardContainer}>
         <TouchableOpacity onPress={() => goToDetail(item)}>
           <Image
             style={styles.image}
@@ -63,8 +70,8 @@ const HomeScreen: React.FC = () => {
               uri: item.imageUrl
             }}
           />
-          <View style={styles.cardInfoView}>
-            <Card.Title style={styles.cardTitle} numberOfLines={1}>
+          <View style={styles.campaignCardInfoView}>
+            <Card.Title style={styles.campaignCardTitle} numberOfLines={1}>
               {item.title}
             </Card.Title>
             <View>
@@ -77,29 +84,65 @@ const HomeScreen: React.FC = () => {
     );
   };
 
+  const renderTrashTypeCard = ({ item }: { item: TrashType }) => {
+    let cardColor;
+
+    switch (item.type) {
+      case "Recyclable":
+        cardColor = colors.blue;
+        break;
+      case "Organic":
+        cardColor = colors.primary;
+        break;
+      default:
+        cardColor = colors.secondary;
+        break;
+    }
+
+    return (
+      <TouchableOpacity
+        style={[styles.trashTypeCardContainer, { backgroundColor: cardColor }]}
+        onPress={() => navigation.navigate("HomeNavigator", {
+          screen: "TrashTypeDetail",
+          params: { item }
+        })}
+      >
+        <Text style={styles.trashTypeCardLabel}>{item.label}</Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.homeScreenContainer}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <HomeHeader />
         <View style={styles.weatherRow}>
-          <WeatherInfo title="Chất lượng không khí" icon={faWind} value="40*" />
+          <WeatherInfo
+            title={UPrecycleText.AIR_QUALITY}
+            icon={faWind}
+            value="40*"
+          />
           <Divider width={12} orientation="vertical" color={colors.white} />
-          <WeatherInfo title="Nhiệt độ" icon={faTemperature3} value="30°C" />
+          <WeatherInfo
+            title={UPrecycleText.TEMPERATURE}
+            icon={faTemperature3}
+            value="33°C"
+          />
         </View>
         <ListCards
           items={campaigns.campaigns}
           horizontal
-          title={UPrecycleText.EVENT}
-          renderCard={renderEventCard}
+          title={UPrecycleText.CAMPAIGN}
+          renderCard={renderCampaignCard}
           goToList={() => navigation.navigate("HomeNavigator", {
-            screen: "ListEvents"
+            screen: "ListCampaigns"
           })}
         />
         <ListCards
-          items={[]}
+          items={mockTrashTypes}
           horizontal
           title="Thông tin"
-          renderCard={renderEventCard}
+          renderCard={renderTrashTypeCard}
         />
       </ScrollView>
     </SafeAreaView>
@@ -120,7 +163,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginVertical: 8
   },
-  cardContainer: {
+  campaignCardContainer: {
     borderRadius: 8,
     padding: 0,
     marginHorizontal: 8,
@@ -130,7 +173,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     elevation: 4
   },
-  cardInfoView: {
+  campaignCardInfoView: {
     padding: 8,
     marginTop: 8
   },
@@ -141,8 +184,29 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8
   },
-  cardTitle: {
+  campaignCardTitle: {
     fontSize: sizes.h3,
     fontWeight: "bold"
+  },
+  trashTypeCardContainer: {
+    height: sizes.height * 0.2,
+    width: 100,
+    borderRadius: 16,
+    padding: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 12,
+    marginBottom: 8,
+    marginHorizontal: 12,
+    shadowOpacity: 0.2,
+    elevation: 4,
+    backgroundColor: "pink"
+  },
+  trashTypeCardLabel: {
+    fontSize: sizes.h3,
+    fontWeight: "600",
+    color: colors.white,
+    textAlign: "center",
+    lineHeight: 32
   }
 });

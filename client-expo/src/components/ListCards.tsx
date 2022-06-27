@@ -61,7 +61,7 @@ export default ListCards;
 
 const styles = StyleSheet.create({
   listCardsContainer: {
-    marginVertical: 16
+    marginVertical: 12
   },
   listCardsTitleRow: {
     flexDirection: "row",

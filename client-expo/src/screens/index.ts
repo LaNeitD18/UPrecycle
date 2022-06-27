@@ -5,9 +5,12 @@ import NewsScreen from "./news/NewsScreen";
 import SettingsScreen from "./settings/SettingsScreen";
 import TempScreen from "./home/TempScreen";
 import ClassificationScreen from "./classification/ClassificationScreen";
-import EventDetailScreen from "./events/EventDetailScreen";
-import ListEventsScreen from "./events/ListEventsScreen";
 import LoadingScreen from "./authentication/LoadingScreen";
+import ListCampaignsScreen from "./home/campaigns/ListCampaignsScreen";
+import CampaignDetailScreen from "./home/campaigns/CampaignDetailScreen";
+import UserScreen from "./settings/UserScreen";
+import TrashTypeDetailScreen from "./home/trash/TrashTypeDetailScreen";
+import EditPasswordScreen from "./settings/EditPasswordScreen";
 
 export {
   SignInScreen,
@@ -17,7 +20,10 @@ export {
   SettingsScreen,
   ClassificationScreen,
   TempScreen,
-  EventDetailScreen,
-  ListEventsScreen,
-  LoadingScreen
+  LoadingScreen,
+  ListCampaignsScreen,
+  CampaignDetailScreen,
+  UserScreen,
+  TrashTypeDetailScreen,
+  EditPasswordScreen
 };

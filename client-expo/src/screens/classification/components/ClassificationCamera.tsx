@@ -5,7 +5,9 @@ import {
   View,
   TouchableOpacity,
   PixelRatio,
-  Image
+  Image,
+  Modal,
+  ToastAndroid
 } from "react-native";
 import { Camera, CameraType } from "expo-camera";
 import ViewShot, { captureRef } from "react-native-view-shot";
@@ -18,13 +20,16 @@ import {
 } from "@expo/vector-icons";
 import * as API from "../../../api/trash";
 import { PredictionResult } from "../../../models/PredictionResult";
+import { SearchIconURLConcept } from "../../../dataSources/TrashConcepts";
 
 interface IClassificationCameraProps {
   turnOffCamera: () => void;
+  capture: (uri: string) => void;
 }
 
 const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
-  turnOffCamera
+  turnOffCamera,
+  capture
 }) => {
   // eslint-disable-next-line no-unused-vars
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -37,7 +42,7 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
   const pixels = targetPixelCount / pixelRatio;
   // eslint-disable-next-line no-unused-vars
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [counter, start, pause, reset, isRunning] = useClock(0, 2000, false);
+  const [counter, start, pause, reset, isRunning] = useClock(0, 5000, false);
   const [predictionObj, setPredictionObj] = useState<PredictionResult>();
 
   useEffect(() => {
@@ -53,7 +58,8 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
         const predictionResults: PredictionResult[] = res.data?.predictionResult;
         setPredictionObj(predictionResults[0]);
       })
-      .catch(() => {
+      .catch((err: any) => {
+        console.log(err);
         setPredictionObj(undefined);
       });
   };
@@ -110,7 +116,25 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
             justifyContent: "center"
           }}
           onPress={() => {
-            console.log("hello");
+            pause();
+            console.log("chụp");
+            captureRef(ref, {
+              result: "data-uri",
+              height: pixels,
+              width: pixels,
+              quality: 1,
+              format: "png"
+            }).then(
+              (uri) => {
+                capture(uri);
+                ToastAndroid.show(
+                  "Rác thải đã được chụp lại và lưu trữ",
+                  ToastAndroid.SHORT
+                );
+              },
+              // eslint-disable-next-line no-console
+              (error) => console.error("Oops, snapshot failed", error)
+            );
           }}
         >
           <View style={styles.borderButtonCapture}>
@@ -168,9 +192,9 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
         }}
       >
         <Image
-          style={{ width: 55, height: 55, borderRadius: 15 }}
+          style={{ width: 55, height: 55, borderRadius: 15, marginRight: 16 }}
           source={{
-            uri: "https://img.freepik.com/free-vector/water-bottle-icon-flat-style_157943-44.jpg"
+            uri: SearchIconURLConcept(predictionObj?.name ?? "Trash")
           }}
         />
         <View style={{ flexDirection: "column", width: "80%" }}>
@@ -191,11 +215,13 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
   );
 
   return (
-    <ViewShot ref={ref} style={styles.container}>
-      <Camera style={styles.camera} type={type} />
-      <ControlCameraCard />
-      <ClassificationTitleCard />
-    </ViewShot>
+    <Modal animationType="slide" transparent style={styles.container}>
+      <ViewShot ref={ref} style={styles.container}>
+        <Camera style={styles.camera} type={type} ratio="16:9" />
+        <ControlCameraCard />
+        <ClassificationTitleCard />
+      </ViewShot>
+    </Modal>
   );
 };
 
@@ -238,7 +264,10 @@ const styles = StyleSheet.create({
     borderColor: "white",
     justifyContent: "center",
     alignItems: "center",
-    padding: 8
+    padding: 8,
+    shadowOpacity: 0.2,
+    elevation: 4,
+    shadowColor: "whitesmoke"
   },
   classificationCard: {
     width: "90%",
@@ -269,7 +298,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: "space-between",
     alignItems: "center",
-    flexDirection: "row"
+    flexDirection: "row",
+    padding: 8
   },
   cameraCard: {
     backgroundColor: "white",

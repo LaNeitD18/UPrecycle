@@ -55,3 +55,37 @@ export async function predictTrashType(imageUrl: string): Promise<ClarifaiConcep
     value: concept.value,
   }));
 }
+
+let randomPrediction: ClarifaiConceptResponse[] = [];
+
+function generateNewRandomPrediction(): ClarifaiConceptResponse[]{
+  return [
+    { id: "Battery", name: "Battery", value: Math.random() },
+    { id: "Biological", name: "Biological", value: Math.random() },
+    { id: "BrownGlass", name: "BrownGlass", value: Math.random() },
+    { id: "Cardboard", name: "Cardboard", value: Math.random() },
+    { id: "Clothes", name: "Clothes", value: Math.random() },
+    { id: "GreenGlass", name: "GreenGlass", value: Math.random() },
+    { id: "Metal", name: "Metal", value: Math.random() },
+    { id: "Paper", name: "Paper", value: Math.random() },
+    { id: "Plastic", name: "Plastic", value: Math.random() },
+    { id: "Shoes", name: "Shoes", value: Math.random() },
+    { id: "Trash", name: "Trash", value: Math.random() },
+    { id: "WhiteGlass", name: "WhiteGlass", value: Math.random() },
+  ].sort((c1, c2) => c2.value - c1.value)
+}
+
+/**
+ * @param refreshTime The refresh time in ***milisecond***
+ */
+export function initPredictionRandomizer (refreshTime: number) {
+  randomPrediction = generateNewRandomPrediction();
+  
+  setInterval(() => {
+    randomPrediction = generateNewRandomPrediction();
+  }, refreshTime);
+}
+
+export async function getRandomPrediction(): Promise<ClarifaiConceptResponse[]> {
+  return randomPrediction;
+}

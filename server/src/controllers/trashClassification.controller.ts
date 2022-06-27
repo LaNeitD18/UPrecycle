@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express'
 import HttpStatus from 'http-status-codes'
 import TrashDetail from '../models/trashDetail.model';
-import { predictTrashType as predictTrashTypeService } from '../services/classification.service'
+import { getRandomPrediction, predictTrashType as predictTrashTypeService } from '../services/classification.service'
 
 export const predictTrashType: RequestHandler = async function(req, res) {
   const { url }: { url: string | null | undefined } = (req.body ?? {}); 
@@ -9,7 +9,9 @@ export const predictTrashType: RequestHandler = async function(req, res) {
     return res.status(HttpStatus.BAD_REQUEST).json({ message: '"url" field is required.' });
 
   try {
-    const predictionResult = await predictTrashTypeService(url);
+    // TODO: To switch this back later
+    // const predictionResult = await predictTrashTypeService(url);
+    const predictionResult = await getRandomPrediction();
     return res.status(HttpStatus.OK).json({ predictionResult });
   }
   catch (err) {

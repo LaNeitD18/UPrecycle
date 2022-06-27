@@ -1,29 +1,26 @@
-const lastestNewsMock = [
+const hotNewsMock = [
   {
-    title: "Phân loại chất thải rắn sinh hoạt tại nguồn",
-    uri: "http://www.baodongnai.com.vn/dong-nai-cuoi-tuan/202206/phan-loai-chat-thai-ran-sinh-hoat-tai-nguon-can-hinh-thanh-thoi-quen-3122469/",
+    title: "Quỹ Bảo vệ môi trường hoạt động thế nào 20 năm qua?",
+    uri: "https://vnexpress.net/quy-bao-ve-moi-truong-hoat-dong-the-nao-20-nam-qua-4478315.html",
     imageURI:
-      "http://www.baodongnai.com.vn/dataimages/202206/original/images2462419_t5_1.jpg",
-    description:
-      "Chia sẻ với Báo Đồng Nai cuối tuần, nhiều bạn đọc (BĐ) cho biết rất mong chờ khi biết từ ngày 1-7, TP.Biên Hòa sẽ triển khai ..."
+      "https://i1-vnexpress.vnecdn.net/2022/06/23/quy-BVMT-01-2-1655953266.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=LhjMpbGyLIx9-KVAl7XGiw",
+    description: "Thành lập tháng 6/2002, Quỹ Bảo vệ môi trường Việt Nam "
   },
   {
-    title: "Phú Quốc nỗ lực giảm rác thải nhựa trên biển",
-    uri: "https://laodong.vn/moi-truong/phu-quoc-no-luc-giam-rac-thai-nhua-tren-bien-1056363.ldo",
+    title: "Thùng rác cũng phải… thông minh",
+    uri: "https://thanhnien.vn/thung-rac-cung-phai-thong-minh-post1472381.html",
 
     imageURI:
-      "https://photo-cms-sggp.zadn.vn/w570/Uploaded/2022/duxredwsxr/2022_06_17/giam-rac-thai-nhua_mjgs.jpg",
-    descripttion:
-      "Những năm gần đây, nhiều phong trào sử dụng vật liệu thân thiện, hoạt động bảo vệ môi trường được triển khai, thu hút đông ..."
+      "https://image.thanhnien.vn/w2048/Uploaded/2022/wpxlcqjwq/2022_06_27/1-tno-1613.jpg",
+    descripttion: "Thùng rác có thể đóng, mở nắp tự động,"
   },
   {
-    title: "Lan tỏa các mô hình chung tay bảo vệ môi trường",
-    uri: "http://www.baodongnai.com.vn/dong-nai-cuoi-tuan/202206/phan-loai-chat-thai-ran-sinh-hoat-tai-nguon-can-hinh-thanh-thoi-quen-3122469/",
+    title: "TP.HCM: Tiến tới 100% siêu thị không dùng túi nylon",
+    uri: "https://plo.vn/tp-hcm-tien-toi-100-sieu-thi-khong-dung-tui-nylon-post686286.html",
 
     imageURI:
-      "https://laodongthudo.vn/stores/news_dataimages/2022/062022/23/15/aa826967d7ed88e0f9292419abd319db.jpg?rt=20220623151004",
-    description:
-      "Thời gian qua, các quận, huyện, thị xã trên địa bàn Thủ đô đã có nhiều mô hình hiệu quả, thiết thực trong việc bảo vệ môi ..."
+      "https://photo-cms-plo.zadn.vn/w850/Uploaded/2022/bzivpwiv/2022_06_26/p8-hinhbai-7407.jpg",
+    description: "TP.HCM đặt chỉ tiêu đến hết năm 2022, 100%... "
   },
   {
     title: "Những bàn tay nhỏ góp phần bảo vệ môi trường Thủ đô",
@@ -53,4 +50,4 @@ const lastestNewsMock = [
   }
 ];
 
-export default lastestNewsMock;
+export default hotNewsMock;

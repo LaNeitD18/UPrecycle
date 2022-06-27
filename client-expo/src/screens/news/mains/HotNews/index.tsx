@@ -6,7 +6,7 @@ import BlankCard from "../../../../components/BlankCard";
 import HotNewsItem from "../../components/HotNewsItem";
 import Divider from "../../../../components/Divider";
 // mocks
-import lastestNewsMock from "../../../../mocks/LastestNews";
+import hotNewsMock from "../../../../mocks/HotNews";
 import styles from "./styles";
 
 interface TitleProps {
@@ -23,9 +23,9 @@ const HotNews = ({ titleList }: TitleProps) => (
       <FlatList
         scrollEnabled={false}
         showsVerticalScrollIndicator={false}
-        data={lastestNewsMock}
-        renderItem={({ item: { title, imageURI } }) => (
-          <HotNewsItem title={title} imageURI={imageURI} />
+        data={hotNewsMock}
+        renderItem={({ item: { title, imageURI, uri } }) => (
+          <HotNewsItem title={title} imageURI={imageURI} uri={uri} />
         )}
         keyExtractor={(item) => item.title}
         ItemSeparatorComponent={Divider}

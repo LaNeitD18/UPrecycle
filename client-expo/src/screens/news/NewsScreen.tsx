@@ -11,8 +11,8 @@ import styles from "./styles";
 const NewsScreen = () => (
   <SafeAreaView style={styles.newsScreenWrapper}>
     <ScrollView showsVerticalScrollIndicator={false}>
-      <LastestNews titleList="Lastest News" />
-      <HotNews titleList="Hot News" />
+      <LastestNews titleList="Tin Mới" />
+      <HotNews titleList="Tin Hot" />
     </ScrollView>
   </SafeAreaView>
 );

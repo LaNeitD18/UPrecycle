@@ -19,12 +19,8 @@ const LastestNews = ({ titleList }: ILastestNewsProps) => (
       horizontal
       data={lastestNewsMock}
       keyExtractor={(item) => item.title}
-      renderItem={({ item: { title, imageURI } }) => (
-        <LastestNewsItem
-          title={title}
-          imageURI={imageURI}
-          resizeMode="contain"
-        />
+      renderItem={({ item: { title, imageURI, uri } }) => (
+        <LastestNewsItem title={title} imageURI={imageURI} uri={uri} />
       )}
       ItemSeparatorComponent={ItemSeparator}
     />

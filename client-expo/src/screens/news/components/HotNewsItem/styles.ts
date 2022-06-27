@@ -3,10 +3,11 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   hotNewsItemWrapper: {
+    flex: 1,
     flexDirection: "row"
   },
   hotNewsItemWrapperInner: {
-    flex: 1,
+    flexDirection: "column",
     marginLeft: 10
   },
   titleNews: {
@@ -15,6 +16,7 @@ const styles = StyleSheet.create({
   },
   descriptionNews: {
     fontSize: 14,
+    marginTop: 5,
     color: "gray"
   }
 });

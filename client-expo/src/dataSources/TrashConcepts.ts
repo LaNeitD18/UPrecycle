@@ -1,8 +1,15 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable max-len */
 interface TrashConcept {
   urlImg: string;
   name: string;
   description: string;
   count: number;
+}
+
+interface TrashImage {
+  uri: string;
+  title: string;
 }
 
 export const TrashConcepts: TrashConcept[] = [
@@ -89,5 +96,74 @@ export const TrashConcepts: TrashConcept[] = [
     name: "WhiteGlass",
     description: "",
     count: 0
+  }
+];
+
+export const SearchIconURLConcept = (nameConcept: string) => {
+  if (nameConcept === undefined) {
+    return TrashConcepts[0].urlImg;
+  }
+
+  for (let i = 0; i < TrashConcepts.length; i++) {
+    if (TrashConcepts[i].name === nameConcept) {
+      return TrashConcepts[i].urlImg;
+    }
+  }
+
+  return TrashConcepts[0].urlImg;
+};
+
+export const TrashImages: TrashImage[] = [
+  {
+    uri: "https://cdn-4.ohay.tv/imgs/af39c6ea22f745a08a73/728.jpg",
+    title: "Thủy tinh trắng - chai nước"
+  },
+  {
+    uri: "http://tapchimoitruong.vn/files/H%C3%A0%20N%E1%BB%99i%20nc.jpg",
+    title: "Đồ nhựa - để dành bán đồ nát"
+  },
+  {
+    uri: "https://menbephot.net/wp-content/uploads/2021/04/Che-pham-Emzeo-co-kha-nang-khu-mui-hoi-va-phan-huy-cac-loai-chat-thai-huu-co-480x320.jpg",
+    title: "Hữu cơ - vỏ sau khi gọt trái cây"
+  },
+  {
+    uri: "https://img.bestdealplus.com/ae04/kf/H59bd256330b74053ae20d93dfade085bU.jpg",
+    title: "Quần áo - Áo thun cũ"
+  },
+  {
+    uri: "https://muaphelieutoanquoc.com.vn/wp-content/uploads/2021/12/tai-che-vo-hop-kim-loai-3.jpg",
+    title: "Kim loại - lon nước ngọt"
+  },
+  {
+    uri: "https://media.moitruongvadothi.vn/2019/11/16/9855/1573912939-rjgld.jpg",
+    title: "Điện tử - thùng pin"
+  },
+  {
+    uri: "https://cokhithanhtai.com//upload/ckfinder/images/2(6).jpg",
+    title: "Đồ nhựa - chai nước mắm"
+  },
+  {
+    uri: "https://www.cleanipedia.com/images/5iwkm8ckyw6v/b542b321e2fadaaa2e399b0b4d9340a3/b6b32ed2e65bf0744d1fdd826e47c191/aHR0cHNfX193d3cuY2xlYW5pcGVkaWEuY29tX2NvbnRlbnRfZGFtX3VuaWxldmVyX2NsZWFuaXBlZGlhX2dsb2JhbF9nZW5lcmFsX2ltYWdlX21vbnN0ZXJfcGVuX2hvbGRlcnNfc2hhbXBvb19ib3R0bGVzXzItMjIzNC5qcGc/990w-660h/t%C3%A1i-ch%E1%BA%BF-r%C3%A1c-th%E1%BA%A3i%3A-l%E1%BB%A3i-%C3%ADch-v%C3%A0-c%C3%A1ch-ph%C3%A2n-lo%E1%BA%A1i.jpg",
+    title: "Giấy - bìa giấy làm hộp bút"
+  },
+  {
+    uri: "https://johnsonluxury.com/wp-content/uploads/2019/07/Calais-Lustrous-Chrome-Ballpoint-Pen-Fountain-Pen-in-Gift-Box-5-300x300.jpg",
+    title: "Rác - vỏ bút cũ"
+  },
+  {
+    uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvqEId7nUwPlCGK_PjraLmvdHdeqejE6s1fA&usqp=CAU",
+    title: "Giấy - giấy hộp sữa"
+  },
+  {
+    uri: "https://cdc.thuathienhue.gov.vn/UploadFiles/TinTuc/2019/10/17/2%20ld.jpg",
+    title: "Rác - Thùng rác sau hè"
+  },
+  {
+    uri: "https://cdnimg.vietnamplus.vn/uploaded/izhsa/2019_08_12/needless.jpg",
+    title: "Y tế - ống tiêm y tế"
+  },
+  {
+    uri: "https://www.cleanipedia.com/images/5iwkm8ckyw6v/b542b321e2fadaaa2e399b0b4d9340a3/b6b32ed2e65bf0744d1fdd826e47c191/aHR0cHNfX193d3cuY2xlYW5pcGVkaWEuY29tX2NvbnRlbnRfZGFtX3VuaWxldmVyX2NsZWFuaXBlZGlhX2dsb2JhbF9nZW5lcmFsX2ltYWdlX21vbnN0ZXJfcGVuX2hvbGRlcnNfc2hhbXBvb19ib3R0bGVzXzItMjIzNC5qcGc/990w-660h/t%C3%A1i-ch%E1%BA%BF-r%C3%A1c-th%E1%BA%A3i%3A-l%E1%BB%A3i-%C3%ADch-v%C3%A0-c%C3%A1ch-ph%C3%A2n-lo%E1%BA%A1i.jpg",
+    title: "Giấy - bìa giấy làm hộp bút"
   }
 ];

@@ -13,7 +13,7 @@ import { initPredictionRandomizer } from "./services/classification.service";
 
 dotenv.config();
 
-initPredictionRandomizer(60000);
+initPredictionRandomizer(5000);
 
 const DB_URI: string = process.env.MONGODB_URI || "";
 

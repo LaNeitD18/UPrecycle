@@ -7,7 +7,7 @@ import {
   PixelRatio,
   Image,
   Modal,
-  Dimensions
+  ToastAndroid
 } from "react-native";
 import { Camera, CameraType } from "expo-camera";
 import ViewShot, { captureRef } from "react-native-view-shot";
@@ -20,13 +20,16 @@ import {
 } from "@expo/vector-icons";
 import * as API from "../../../api/trash";
 import { PredictionResult } from "../../../models/PredictionResult";
+import { SearchIconURLConcept } from "../../../dataSources/TrashConcepts";
 
 interface IClassificationCameraProps {
   turnOffCamera: () => void;
+  capture: (uri: string) => void;
 }
 
 const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
-  turnOffCamera
+  turnOffCamera,
+  capture
 }) => {
   // eslint-disable-next-line no-unused-vars
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -39,7 +42,7 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
   const pixels = targetPixelCount / pixelRatio;
   // eslint-disable-next-line no-unused-vars
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [counter, start, pause, reset, isRunning] = useClock(0, 2000, false);
+  const [counter, start, pause, reset, isRunning] = useClock(0, 5000, false);
   const [predictionObj, setPredictionObj] = useState();
 
   useEffect(() => {
@@ -113,7 +116,25 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
             justifyContent: "center"
           }}
           onPress={() => {
-            console.log("hello");
+            pause();
+            console.log("chụp");
+            captureRef(ref, {
+              result: "data-uri",
+              height: pixels,
+              width: pixels,
+              quality: 1,
+              format: "png"
+            }).then(
+              (uri) => {
+                capture(uri);
+                ToastAndroid.show(
+                  "Rác thải đã được chụp lại và lưu trữ",
+                  ToastAndroid.SHORT
+                );
+              },
+              // eslint-disable-next-line no-console
+              (error) => console.error("Oops, snapshot failed", error)
+            );
           }}
         >
           <View style={styles.borderButtonCapture}>
@@ -171,9 +192,9 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
         }}
       >
         <Image
-          style={{ width: 55, height: 55, borderRadius: 15 }}
+          style={{ width: 55, height: 55, borderRadius: 15, marginRight: 16 }}
           source={{
-            uri: "https://img.freepik.com/free-vector/water-bottle-icon-flat-style_157943-44.jpg"
+            uri: SearchIconURLConcept(predictionObj?.name ?? "Trash")
           }}
         />
         <View style={{ flexDirection: "column", width: "80%" }}>
@@ -203,15 +224,13 @@ const ClassificationCamera: React.FC<IClassificationCameraProps> = ({
     </Modal>
   );
 };
-const windowWidth = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1
   },
   camera: {
-    width: windowWidth,
-    height: (windowWidth * 16) / 9
+    flex: 1
   },
   buttonContainer: {
     flex: 1,
@@ -279,7 +298,8 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: "space-between",
     alignItems: "center",
-    flexDirection: "row"
+    flexDirection: "row",
+    padding: 8
   },
   cameraCard: {
     backgroundColor: "white",
